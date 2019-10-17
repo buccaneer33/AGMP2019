@@ -1,0 +1,22 @@
+<div *ngIf="courceItem" class="cource-item">
+    <div class="cource-item__infoblock">
+        <div class="cource-item__header">
+            <div class="cource-item__title">
+                <h3>Video Cource {{courceItem.id}} {{courceItem.title}} </h3>
+            </div>
+            <div class="cource-item__info">
+                <div>{{courceItem.crationDate | date:'mediumDate'}} </div>
+                <div>{{courceItem.duration}}</div>
+            </div>
+
+        </div>
+        <div>
+            <p>{{courceItem.description}}</p>
+        </div>
+    </div>
+    <div class="cource-item__actionblock">
+        <a href="#" class="btn btn--basic">Edit</a>
+        <a href="#" class="btn btn--basic">Delete</a>
+    </div>
+
+</div>

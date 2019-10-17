@@ -1,0 +1,19 @@
+@import './variables.scss';
+
+.btn{
+    display: block;
+    border-radius: 5%;
+    color: $btn-text-color;
+    padding: 1% 2%;
+    // height: 24px;
+    width: 50px;
+
+    &--basic{
+        background-color: $btn-bg-color;
+        border: 1px solid $btn-bg-color;
+    }
+    &--success{
+        background-color: $btn-active-bg-color;
+        border: 1px solid $btn-active-bg-color;
+    }
+}

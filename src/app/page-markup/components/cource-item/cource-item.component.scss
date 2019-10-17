@@ -1,0 +1,51 @@
+@import '../../../../scss/main.scss';
+.cource-item{
+    background-color: $cource-bg-cource;
+    border: 1px solid $cource-bg-cource;
+    border-radius: 8px;
+    height: 163px - 48px;
+    margin: 12px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    padding: 24px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+    &__infoblock{
+        // flex-grow: 1;
+        flex-basis: 801px;
+    }
+    &__actionblock{
+        flex-basis: 285px;
+    }
+    &__header{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        justify-content: center;
+    }
+    &__title{
+        flex-basis: 80%;
+    }
+    &__info{
+        flex-basis: 20%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-around;
+
+        div{
+            margin: 0 1%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: stretch;
+            justify-content: space-around;
+        }
+    }
+
+}
+

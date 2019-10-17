@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CourceInterface } from 'src/app/page-markup/interfaces/cource.interface';
+import { courceListStub } from 'src/assets/dev-stubs/cource-list';
 
 @Component({
   selector: 'app-items-list',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./items-list.component.scss']
 })
 export class ItemsListComponent implements OnInit {
+    public courceList: CourceInterface[];
 
   constructor() { }
 
   ngOnInit() {
+      this.courceList = courceListStub;
   }
 
 }

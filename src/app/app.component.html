@@ -1,11 +1,34 @@
 <div class="root-wrapper">
-    <header class="root-wrapper__header">
-        <app-header></app-header>
+    <header class="header">
+        <section class="header__wrapper">
+            <app-header></app-header>
+        </section>
     </header>
-    <main class="root-wrapper__main">
-        <app-main></app-main>
+    <main class="main">
+        <section class="main__breadcrumps">
+            <div class="main__breadcrumps-wrapper">
+                <app-breadcrumps></app-breadcrumps>
+            </div>
+        </section>
+        <section class="main__content">
+            <div class="main__content-wrapper">
+                <div class="main__tool-block">
+                    <div class="main__tool-wrapper">
+                        <app-search-bar></app-search-bar>
+                    </div>
+                    <div class="main__tool-wrapper">
+                        <a href="#" class="main__tool-button btn btn--basic">Add Cource</a>
+                    </div>
+                </div>
+                <div class="main__content-block">
+                    <app-items-list></app-items-list>
+                </div>
+            </div>
+        </section>
     </main>
-    <footer class="root-wrapper__footer">
-        <app-footer></app-footer>
+    <footer class="footer">
+        <section class="footer__wrapper">
+                <app-footer></app-footer>
+         </section>
     </footer>
 </div>

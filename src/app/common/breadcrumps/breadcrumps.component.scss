@@ -1,0 +1,11 @@
+@import "../../../scss/variables.scss";
+
+.breadcrumps{
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: $main-font-color;
+    font-weight: 600;
+}
