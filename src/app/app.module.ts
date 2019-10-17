@@ -8,6 +8,9 @@ import { MainComponent } from './page-markup/main/main.component';
 import { FooterComponent } from './page-markup/footer/footer.component';
 import { SearchBarComponent } from './page-markup/search-bar/search-bar.component';
 import { ItemsListComponent } from './page-markup/items-list/items-list.component';
+import { LogoComponent } from './common/logo/logo.component';
+import { LoginFormComponent } from './common/login-form/login-form.component';
+import { CopyRightsComponent } from './common/copy-rights/copy-rights.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { ItemsListComponent } from './page-markup/items-list/items-list.componen
     MainComponent,
     FooterComponent,
     SearchBarComponent,
-    ItemsListComponent
+    ItemsListComponent,
+    LogoComponent,
+    LoginFormComponent,
+    CopyRightsComponent
   ],
   imports: [
     BrowserModule

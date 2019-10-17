@@ -1,0 +1,31 @@
+@import "../../../scss/variables.scss";
+.header-logo{
+    height: 50px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+
+    &__image{
+        background-image: url('../../../assets/icons/play-button.svg');
+        background-repeat: no-repeat;
+        height: 40px;
+        width: 40px;
+        background-size: 40px;
+        padding: 0 2%;
+    }
+    &__title{
+        color: $header-font-color;
+        height: 25px;
+        width: 150px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0 2%;
+        font-size: 1rem;
+    }
+}

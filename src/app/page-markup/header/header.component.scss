@@ -1,5 +1,11 @@
+@import "../../../scss/variables.scss";
 .header{
     height: 100%;
-    padding: 0 50px 0 50px;
-    background-color: #414452;
+    padding: 0 $main-right-paddings 0 $main-left-padding;
+    background-color: $header-bg-color;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
 }
