@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourceInterface } from 'src/app/page-markup/interfaces/cource.interface';
+import { CourceInterface } from 'src/app/cource-list/interfaces/CourceInterface';
 import { courceListStub } from 'src/assets/dev-stubs/cource-list';
 
 @Component({
@@ -10,10 +10,10 @@ import { courceListStub } from 'src/assets/dev-stubs/cource-list';
 export class ItemsListComponent implements OnInit {
     public courceList: CourceInterface[];
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-      this.courceList = courceListStub;
-  }
+    ngOnInit() {
+        this.courceList = courceListStub;
+    }
 
 }

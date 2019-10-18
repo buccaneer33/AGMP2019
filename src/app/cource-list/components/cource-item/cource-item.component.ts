@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CourceInterface } from 'src/app/page-markup/interfaces/cource.interface';
+import { CourceInterface } from 'src/app/cource-list/interfaces/CourceInterface';
 
 @Component({
   selector: 'app-cource-item',

@@ -1,4 +1,4 @@
-import { CourceInterface } from 'src/app/page-markup/interfaces/cource.interface';
+import { CourceInterface } from 'src/app/cource-list/interfaces/CourceInterface';
 export const courceListStub: CourceInterface[] = [
     {
         id: 23,
