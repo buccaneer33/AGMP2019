@@ -1,3 +1,11 @@
 <div *ngIf="courceList" class="items-list">
-    <app-cource-item *ngFor="let courceItem of courceList" [courceItem]="courceItem"></app-cource-item>
+    <app-cource-item 
+        *ngFor="let courceItem of courceList" 
+        [courceItem]="courceItem" 
+        (chooseDelete)="getDeleteItem($event)"
+        (chooseEdit)="getEditItem($event)">
+    </app-cource-item>
+    <div class="items-list__load-more">
+        <a href="#">load more</a>
+    </div>
 </div>

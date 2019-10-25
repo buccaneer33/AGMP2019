@@ -9,15 +9,20 @@
     flex-direction: row;
     align-items: stretch;
     justify-content: center;
-    padding: 24px;
+    padding: 24px 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 
     &__infoblock{
-        // flex-grow: 1;
-        flex-basis: 801px;
+        width: 80%;
     }
     &__actionblock{
-        flex-basis: 285px;
+        width: 15%;
+        min-width: 150px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-around;
     }
     &__header{
         display: flex;
@@ -36,6 +41,7 @@
         flex-wrap: nowrap;
         align-items: center;
         justify-content: space-around;
+        color: $cource-icon-color;
 
         div{
             margin: 0 1%;
