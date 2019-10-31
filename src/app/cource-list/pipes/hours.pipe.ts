@@ -5,9 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class HoursPipe implements PipeTransform {
 
-  transform(value: number, args?: number): string {
-      const hoursString = (value / 60).toFixed(2);
-
-    return hoursString.replace('.', 'h ') + ' min';
-  }
+    transform(value: number, args?: number): string {
+        const hoursString = (value / 60).toFixed(2);
+        return hoursString.replace('.', 'h ') + ' min';
+    }
 }

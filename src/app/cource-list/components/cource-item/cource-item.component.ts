@@ -15,8 +15,9 @@ export class CourceItemComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
+
     editItem() {
         this.chooseEdit.emit(this.courceItem.id);
     }
