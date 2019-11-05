@@ -25,7 +25,7 @@ describe('BreadcrumpsComponent', () => {
         expect(fixture).toBeTruthy();
         expect(component).toBeTruthy();
     });
-    it('nativeElement has a article with content "Cources"', () => {
-        expect(compiled.querySelector('article .breadcrumps').textContent).toContain('Cources');
+    it('nativeElement has a block .breadcrumps with content "Cources"', () => {
+        expect(compiled.querySelector('.breadcrumps').textContent).toContain('Cources');
     });
 });
