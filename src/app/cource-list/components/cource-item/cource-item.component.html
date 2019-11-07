@@ -5,8 +5,8 @@
                 <h3>Video Cource {{courceItem.id}} {{courceItem.title}} </h3>
             </div>
             <div class="cource-item__info">
-                <div>{{courceItem.crationDate | date:'mediumDate'}} </div>
-                <div>{{courceItem.duration}}</div>
+                <div class="icon--clock">{{courceItem.duration | hours }}</div>
+                <div class="icon--date">{{courceItem.crationDate | date:'mediumDate'}} </div>
             </div>
 
         </div>
@@ -15,8 +15,7 @@
         </div>
     </div>
     <div class="cource-item__actionblock">
-        <div class="btn btn--basic">Edit</div>
-        <div class="btn btn--basic">Delete</div>
+        <div class="btn btn--edit" (click)="editItem($event)">Edit</div>
+        <div class="btn btn--delete" (click)="deleteItem($event)">Delete</div>
     </div>
-
 </div>

@@ -1,4 +1,26 @@
+@import '../../../../scss/main.scss';
 .items-list{
     height: 100%;
     width: 100%;
+
+    &__load-more{
+        background-color: $cource-bg-cource;
+        border: 1px solid $cource-bg-cource;
+        border-radius: 8px;
+        height: 10px;
+        margin: 12px 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 10px;
+        box-sizing: border-box;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+        & >a{
+            color: $btn-bg-color;
+            text-decoration: underline;
+            text-transform: uppercase;
+        }
+    }
 }

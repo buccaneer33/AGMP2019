@@ -15,5 +15,10 @@ export class ItemsListComponent implements OnInit {
     ngOnInit() {
         this.courceList = courceListStub;
     }
-
+    getEditItem(event) {
+        console.log(event);
+    }
+    getDeleteItem(event) {
+        console.log(event);
+    }
 }
