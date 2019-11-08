@@ -8,7 +8,7 @@
 <div *ngIf="editedList" class="items-list">
     <div *ngIf="noDataMessage" class="items-list__load-more">NO DATA Message</div>
     <app-cource-item
-        *ngFor="let courceItem of editedList | orderBy: 'courceList: crationDate'" 
+        *ngFor="let courceItem of editedList | orderBy: 'crationDate'" 
         [courceItem]="courceItem" 
         (chooseDelete)="getDeleteItem($event)"
         (chooseEdit)="getEditItem($event)">
