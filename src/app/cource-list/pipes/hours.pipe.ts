@@ -6,7 +6,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class HoursPipe implements PipeTransform {
 
     transform(value: number, args?: number): string {
-        const hoursString = (value / 60).toFixed(2);
-        return hoursString.replace('.', 'h ') + ' min';
+        let hoursString;
+        if (value > 60) {
+            hoursString = (value / 60).toFixed(2);
+            return hoursString.replace('.', 'h ') + ' min';
+        } else {
+            hoursString = (value / 60).toFixed(2);
+            return hoursString.replace('0.', '') + ' min';
+        }
     }
 }

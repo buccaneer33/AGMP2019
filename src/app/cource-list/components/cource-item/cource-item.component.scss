@@ -52,6 +52,15 @@
             justify-content: space-around;
         }
     }
-
+    &--star{
+        padding-left: 27px;
+        background: url('src/assets/icons/star.svg');
+        background-repeat: no-repeat;
+        background-size: 17px;
+        background-position: 5px 0px;
+    }
+    &--rate{
+        background-color: darken($cource-bg-cource,10%);
+    }
 }
 

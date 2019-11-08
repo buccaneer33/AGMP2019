@@ -1,12 +1,17 @@
-<div *ngIf="courceItem" class="cource-item">
+<div *ngIf="courceItem" class="cource-item"
+    [ngClass] = "{ 'cource-item--rate': courceItem.topRated === true }"
+    appCourceDate inputDate = {{courceItem.crationDate}} >
     <div class="cource-item__infoblock">
         <div class="cource-item__header">
             <div class="cource-item__title">
-                <h3>Video Cource {{courceItem.id}} {{courceItem.title}} </h3>
+                <h3>Video Cource {{courceItem.id}} {{courceItem.title | uppercase}}
+                    <span [ngClass]="{ 'cource-item--star': courceItem.topRated === true }"></span>
+                </h3>
+
             </div>
             <div class="cource-item__info">
                 <div class="icon--clock">{{courceItem.duration | hours }}</div>
-                <div class="icon--date">{{courceItem.crationDate | date:'mediumDate'}} </div>
+                <div class="icon--date">{{courceItem.crationDate | date: 'dd MMM yyyy'}} </div>
             </div>
 
         </div>

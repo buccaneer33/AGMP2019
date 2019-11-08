@@ -5,5 +5,6 @@ export class CourceClass implements CourceInterface {
     public title: string = 'Title';
     public crationDate: string = '12-12-12';
     public duration: string | number = 245;
+    public topRated: boolean = true;
     public description: string = 'Description';
 }
