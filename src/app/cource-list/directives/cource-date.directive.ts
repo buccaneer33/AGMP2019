@@ -7,30 +7,30 @@ export class CourceDateDirective implements OnInit {
 
     @Input() inputDate;
 
-    private crationDate;
-    private currentDate;
-    private limitDate;
-
     constructor(private elRef: ElementRef) { }
 
     ngOnInit() {
         if ( this.inputDate ) {
 
-            this.crationDate = new Date(this.inputDate);
-            this.crationDate = this.crationDate.getTime();
+            let crationDate;
+            let currentDate;
+            let limitDate;
 
-            this.currentDate = new Date();
-            this.currentDate = this.currentDate.getTime();
+            crationDate = new Date(this.inputDate);
+            crationDate = crationDate.getTime();
 
-            this.limitDate = new Date();
-            this.limitDate = this.limitDate.getTime();
-            this.limitDate = this.limitDate - ((3600 * 24 * 1000) * 14);
+            currentDate = new Date();
+            currentDate = currentDate.getTime();
 
-            if (this.crationDate < this.currentDate && this.crationDate >= this.limitDate) {
+            limitDate = new Date();
+            limitDate = limitDate.getTime();
+            limitDate = limitDate - ((3600 * 24 * 1000) * 14);
+
+            if (crationDate < currentDate && crationDate >= limitDate) {
                 this.elRef.nativeElement.style.borderColor = 'green';
                 this.elRef.nativeElement.style.borderWidth = 'medium';
             }
-            if (this.crationDate > this.currentDate) {
+            if (crationDate > currentDate) {
                 this.elRef.nativeElement.style.borderColor = 'blue';
                 this.elRef.nativeElement.style.borderWidth = 'medium';
             }

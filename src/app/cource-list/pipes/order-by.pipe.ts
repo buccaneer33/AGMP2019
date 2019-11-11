@@ -8,9 +8,11 @@ export class OrderByPipe implements PipeTransform {
 
     transform(value: any, field: string): any[] {
         if (!Array.isArray(value)) {
-            return;
+            return value;
         }
-        value.sort((a: any, b: any) => {
+        const result = value.slice(0);
+
+        result.sort((a: any, b: any) => {
 
             const alpha = new Date(a[field]).getTime();
             const beta = new Date(b[field]).getTime();
@@ -23,6 +25,6 @@ export class OrderByPipe implements PipeTransform {
             return 0;
             }
         });
-        return value;
+        return result;
     }
 }
