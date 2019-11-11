@@ -3,5 +3,6 @@ export interface CourceInterface {
     title: string;
     crationDate: string;
     duration: string | number;
+    topRated: boolean;
     description: string;
 }

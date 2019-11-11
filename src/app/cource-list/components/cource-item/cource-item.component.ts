@@ -12,12 +12,12 @@ export class CourceItemComponent implements OnInit {
 @Output() chooseDelete: EventEmitter<number|string> = new EventEmitter<number|string>();
 @Output() chooseEdit: EventEmitter<number|string> = new EventEmitter<number|string>();
 
+    public newCource: boolean;
 
-  constructor() { }
+    constructor() { }
 
     ngOnInit() {
     }
-
     editItem() {
         this.chooseEdit.emit(this.courceItem.id);
     }
