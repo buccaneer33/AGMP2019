@@ -3,7 +3,7 @@ export const courceListStub: CourceInterface[] = [
     {
         id: 23,
         title: 'Angular Video Cource',
-        crationDate: 'Thu, 11 Nov 2019 14:27:09 GMT',
+        crationDate: 'Thu, 15 Nov 2019 14:27:09 GMT',
         duration: 67,
         topRated: true,
         // tslint:disable-next-line: max-line-length
