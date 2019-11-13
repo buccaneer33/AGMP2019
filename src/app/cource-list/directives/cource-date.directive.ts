@@ -5,7 +5,7 @@ import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 })
 export class CourceDateDirective implements OnInit {
 
-    @Input() inputDate;
+    @Input('appCourceDate') inputDate: any;
 
     constructor(private elRef: ElementRef) { }
 
