@@ -1,9 +1,9 @@
 // COMMONS
-import { BreadcrumpsComponent } from 'src/app/common/breadcrumps/breadcrumps.component';
-import { CopyRightsComponent } from 'src/app/common/copy-rights/copy-rights.component';
-import { LoginFormComponent } from 'src/app/common/login-form/login-form.component';
-import { LogoComponent } from 'src/app/common/logo/logo.component';
-import { SearchBarComponent } from 'src/app/common/search-bar/search-bar.component';
+import { BreadcrumpsComponent } from 'src/app/common/components/breadcrumps/breadcrumps.component';
+import { CopyRightsComponent } from 'src/app/common/components/copy-rights/copy-rights.component';
+import { LoginFormComponent } from 'src/app/common/components/login-form/login-form.component';
+import { LogoComponent } from 'src/app/common/components/logo/logo.component';
+import { SearchBarComponent } from 'src/app/common/components/search-bar/search-bar.component';
 
 // Cource LIST
 import { CourceItemComponent } from './cource-list/components/cource-item/cource-item.component';

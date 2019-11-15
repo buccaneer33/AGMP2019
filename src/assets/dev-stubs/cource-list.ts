@@ -21,7 +21,7 @@ export const courceListStub: CourceInterface[] = [
     },
     {
         id: 25,
-        title: 'RxJS Video Cource',
+        title: 'Angular RxJS Video Cource',
         crationDate: 'Thu, 27 Aug 2018 14:27:09 GMT',
         duration: 20,
         topRated: true,

@@ -1,4 +1,4 @@
-@import "../../../scss/variables.scss";
+@import "../../../../scss/variables.scss";
 
 .header-login-form{
     display: flex;
@@ -40,7 +40,7 @@
         color: $header-font-color;
     }
     &__input-block{
-        background-image: url('../../../assets/icons/person.svg');
+        background-image: url('../../../../assets/icons/person.svg');
         background-repeat: no-repeat;
         background-position: center left;
         height: 12px;
@@ -52,16 +52,18 @@
         flex-wrap: nowrap;
         justify-content: flex-start;
         align-items: center;
+        margin-right: 20px;
     }
 
     &__button{
         background-color: $header-bg-color;
         color: $header-font-color;
         border: none;
+        cursor: pointer;
     }
     &__button-block{
         @extend .header-login-form__input-block;
-        background-image: url('../../../assets/icons/logoff.svg');
+        background-image: url('../../../../assets/icons/logoff.svg');
     }
 }
 

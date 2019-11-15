@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FooterComponent } from './footer.component';
-import { CopyRightsComponent } from 'src/app/common/copy-rights/copy-rights.component';
+import { CopyRightsComponent } from 'src/app/common/components/copy-rights/copy-rights.component';
 
 describe('FooterComponent', () => {
     let component: FooterComponent;

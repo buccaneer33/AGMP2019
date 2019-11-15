@@ -1,4 +1,4 @@
-@import "../../../scss/main.scss";
+@import "../../../../scss/main.scss";
 
 .search-bar{
     height: 48px;
@@ -15,7 +15,7 @@
         border: 1px solid $search-bar-text-color;
         border-radius: 5px;
         padding: 0 0 0 45px;
-        background-image: url('../../../assets/icons/search.svg');
+        background-image: url('../../../../assets/icons/search.svg');
         background-repeat: no-repeat;
         background-size: 24px;
         background-position: 10px 10px;

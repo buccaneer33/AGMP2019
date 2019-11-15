@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
-import { LogoComponent } from 'src/app/common/logo/logo.component';
-import { LoginFormComponent } from 'src/app/common/login-form/login-form.component';
+import { LogoComponent } from 'src/app/common/components/logo/logo.component';
+import { LoginFormComponent } from 'src/app/common/components/login-form/login-form.component';
 
 describe('HeaderComponent', () => {
     let component: HeaderComponent;
