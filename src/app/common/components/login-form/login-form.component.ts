@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AutorisationService } from 'src/app/common/services/autorisation.service';
 
 @Component({
   selector: 'app-login-form',
@@ -7,11 +8,14 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class LoginFormComponent implements OnInit {
 
+    public isAutorised: boolean = false;
+
     @Output() action: EventEmitter<number|string> = new EventEmitter<number|string>();
 
-    constructor() { }
+    constructor(private autorisation: AutorisationService) { }
 
     ngOnInit() {
+        this.isAutorised$();
     }
 
     logInPush() {
@@ -19,5 +23,11 @@ export class LoginFormComponent implements OnInit {
     }
     logOutPush() {
         this.action.emit('logOutAction');
+    }
+
+    isAutorised$() {
+        this.autorisation.isAutificated.subscribe(data => {
+            this.isAutorised = data;
+        });
     }
 }
