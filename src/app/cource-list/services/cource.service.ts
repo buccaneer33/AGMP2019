@@ -7,23 +7,25 @@ import { courceListStub } from 'src/assets/dev-stubs/cource-list';
 })
 export class CourceService {
 
-    constructor() { }
+    public courceList: CourceInterface[];
 
-    getCourceList(): CourceInterface[] {
-        return courceListStub;
+    constructor() {
+        this.getCourceList();
+     }
+
+    getCourceList() {
+        this.courceList = courceListStub.slice(0);
     }
 
     createCource() {
         console.log('createCource');
      }
 
-    getCourceById(list: CourceInterface[], id: number | string): CourceInterface {
-        if (id && id !== null ) {
+    getCourceById( id: number | string): CourceInterface {
+        if (id && id !== null && id !== '') {
             let search;
-            search = list.find(obj => obj.id === id);
+            search = this.courceList.find(obj => obj.id === id);
             return search;
-        } else {
-            return list[0];
         }
     }
 
@@ -31,24 +33,22 @@ export class CourceService {
         console.log('updateCource');
     }
 
-    removeCource(list: CourceInterface[], id: number): CourceInterface[] {
-        if (id && id !== null ) {
-            let search = list.slice(0);
-            search = search.filter(obj => obj.id !== id);
-            return search;
-        } else {
-            return list;
+    removeCource(id: number | string): CourceInterface[] {
+        if (id && id !== null && id !== '') {
+            const search = this.courceList.slice(0);
+            this.courceList = search.filter(obj => obj.id !== id);
+            return this.courceList;
         }
     }
 
-    getCourceByTitle(list: CourceInterface[], name: string): CourceInterface[] {
+    getCourceByTitle(name?: string): CourceInterface[] {
         if (name && name !== null && name !== '') {
-            let search = list;
+            let search = this.courceList.slice(0);
             const exp = new RegExp(name, 'gi');
             search = search.filter(item => (exp.test(item.title)));
             return search;
         } else {
-            return list;
+            return this.courceList;
         }
     }
 }
