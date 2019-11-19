@@ -1,9 +1,0 @@
-<div class="header-login-form">
-    <div class="header-login-form__input-block" *ngIf="!isAutorised">
-        <!--<input type="search" class="header-login-form__input" placeholder="User Login" />-->
-        <div class="header-login-form__button" (click)="logInPush($event)">User Login</div>
-    </div>
-    <div class="header-login-form__button-block" *ngIf="isAutorised">
-        <div class="header-login-form__button" (click)="logOutPush($event)">Log Off</div>
-    </div>
-</div>

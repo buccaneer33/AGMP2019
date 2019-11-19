@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { APP_DECLARATIONS } from 'src/app/app.declarations';
 import { FormsModule } from '@angular/forms';
-import { HoursPipe } from 'src/app/cource-list/pipes/hours.pipe';
+import { HoursPipe } from 'src/app/core-module/cource-list/pipes/hours.pipe';
 
 describe('AppComponent test HTML', () => {
 
