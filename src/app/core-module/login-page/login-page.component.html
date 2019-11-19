@@ -19,7 +19,7 @@
             <div class="login-form__forgot-block">
                 <a href="#" class="login-form__forgot-link">Forgot password?</a>
             </div>
-            <button class="login-form__button login-form__button--ok" (click)="clickLogin()">Login</button>
+            <button class="login-form__button login-form__button--ok" (click)="clickLogin()" [disabled]="!login || !password">Login</button>
         </div>
     </div>
 </div>

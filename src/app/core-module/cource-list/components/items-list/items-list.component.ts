@@ -12,6 +12,7 @@ export class ItemsListComponent implements OnInit {
 
     public courceList: CourceInterface[];
     public noDataMessage: boolean = true;
+    private filter: string;
 
     constructor(
         private courceService: CourceService,
@@ -19,30 +20,29 @@ export class ItemsListComponent implements OnInit {
         ) { }
 
     ngOnInit() {
-        this.courceList = this.courceService.getCourceByTitle();
+        this.courceList = this.courceService.getCourceList();
     }
-    getEditItem(event) {
+    editItem(event: CourceInterface) {
         console.log(event);
     }
-    getDeleteItem(event) {
-        if (event) {
-            const searchRes = this.courceService.getCourceById(event);
-            this.modalsService.showPopup(
-                {
-                    displayComponent: 'confirm-popup',
-                    buttons: {
-                        ok: true,
-                        cancel: true
-                    },
-                    popupData: 'Do you want delete: ' + searchRes.title + ' ?'
-                }).subscribe( result => {
-                    if (result.status) {
-                        this.courceList = this.courceService.removeCource(event);
-                    }
-                });
-        }
+    deleteItem(event: CourceInterface) {
+        this.modalsService.showPopup(
+            {
+                displayComponent: 'confirm-popup',
+                buttons: {
+                    ok: true,
+                    cancel: true
+                },
+                popupData: 'Do you want delete: ' + event.title + ' ?'
+            }).subscribe( result => {
+                if (result.status) {
+                    this.courceService.removeCource(event.id);
+                    this.courceList = this.courceService.getCourceList(this.filter);
+                }
+            });
     }
-    getSearchRes(event) {
-        this.courceList =  this.courceService.getCourceByTitle(event);
+    searchRes(filter: string) {
+        this.filter = filter;
+        this.courceList = this.courceService.getCourceList(filter);
     }
 }

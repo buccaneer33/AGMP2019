@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ModalsServiceService } from 'src/app/modals/services/modals-service.service';
-import { BehaviorSubject, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
 
@@ -9,21 +8,25 @@ import { Router } from '@angular/router';
 })
 export class AutorisationService {
 
-    public isAutificated: boolean = false;
     private userLogin: string;
     private userPassword: string;
 
     constructor(
         private modalsService: ModalsServiceService,
         private router: Router
-    ) { }
+    ) {
+        this.userLogin = localStorage.getItem('userLogin');
+    }
+
+    get isAutificated(): boolean {
+        return !!this.userLogin;
+    }
 
     login(login: string, password: string): void {
         console.log('login success');
         this.userLogin = login;
         this.userPassword = password;
         localStorage.setItem('userLogin', login);
-        this.isAutificated = true;
         this.router.navigate(['/list']);
     }
 
@@ -41,13 +44,12 @@ export class AutorisationService {
                     this.userPassword = null;
                     console.log('userLogin ' + localStorage.getItem('userLogin'));
                     localStorage.removeItem('userLogin');
-                    this.isAutificated = false;
                     this.router.navigate(['/login']);
                 }
             });
     }
 
-    getUserInfo(): string {
-        return localStorage.getItem('userLogin');
+    get userInfo(): string {
+        return this.userLogin;
     }
 }
