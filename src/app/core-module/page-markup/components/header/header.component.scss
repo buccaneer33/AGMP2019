@@ -1,0 +1,9 @@
+@import "../../../../../scss/main.scss";
+.header{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}

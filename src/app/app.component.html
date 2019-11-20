@@ -1,3 +1,4 @@
+<app-modals-overlay></app-modals-overlay>
 <div class="root-wrapper">
     <header class="header">
         <section class="header__wrapper">
@@ -5,7 +6,7 @@
         </section>
     </header>
     <main class="main">
-        <section class="main__breadcrumps">
+        <section *ngIf="autorisation.isAutificated" class="main__breadcrumps">
             <div class="main__breadcrumps-wrapper">
                 <app-breadcrumps></app-breadcrumps>
             </div>
@@ -13,7 +14,10 @@
         <section class="main__content">
             <div class="main__content-wrapper">
                 <div class="main__content-block">
-                    <app-items-list></app-items-list>
+                    <!--<app-items-list></app-items-list>-->
+                    <!--<app-login-page></app-login-page>-->
+                    <!--<app-items-list></app-items-list>-->
+                    <router-outlet></router-outlet>
                 </div>
             </div>
         </section>

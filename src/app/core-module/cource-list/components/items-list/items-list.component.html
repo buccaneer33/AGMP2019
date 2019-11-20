@@ -1,0 +1,21 @@
+<div>
+    <div class="tool-block">
+        <div class="tool-block__wrapper">
+            <app-search-bar (searchRes)="searchRes($event)"></app-search-bar>
+        </div>
+        <div class="tool-block__button btn btn--add">Add Cource</div>
+
+    </div>
+    <div *ngIf="courceList" class="items-list">
+        <div *ngIf="noDataMessage" class="items-list__load-more">NO DATA Message</div>
+        <app-cource-item
+            *ngFor="let courceItem of courceList | orderBy: 'crationDate'" 
+            [courceItem]="courceItem" 
+            (chooseDelete)="deleteItem($event)"
+            (chooseEdit)="editItem($event)">
+        </app-cource-item>
+        <div class="items-list__load-more">
+            <a href="#">load more</a>
+        </div>
+    </div>
+</div>
