@@ -9,8 +9,8 @@ import { CourceInterface } from 'src/app/core-module/cource-list/interfaces/Cour
 export class CourceItemComponent implements OnInit {
 
 @Input() courceItem: CourceInterface;
-@Output() chooseDelete: EventEmitter<number|string> = new EventEmitter<number|string>();
-@Output() chooseEdit: EventEmitter<number|string> = new EventEmitter<number|string>();
+@Output() chooseDelete: EventEmitter<CourceInterface> = new EventEmitter<CourceInterface>();
+@Output() chooseEdit: EventEmitter<CourceInterface> = new EventEmitter<CourceInterface>();
 
     public newCource: boolean;
 
@@ -19,9 +19,9 @@ export class CourceItemComponent implements OnInit {
     ngOnInit() {
     }
     editItem() {
-        this.chooseEdit.emit(this.courceItem.id);
+        this.chooseEdit.emit(this.courceItem);
     }
     deleteItem() {
-        this.chooseDelete.emit(this.courceItem.id);
+        this.chooseDelete.emit(this.courceItem);
     }
 }

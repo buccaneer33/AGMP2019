@@ -6,7 +6,7 @@
         </section>
     </header>
     <main class="main">
-        <section class="main__breadcrumps">
+        <section *ngIf="autorisation.isAutificated" class="main__breadcrumps">
             <div class="main__breadcrumps-wrapper">
                 <app-breadcrumps></app-breadcrumps>
             </div>

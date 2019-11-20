@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AutorisationService } from 'src/app/commons/services/autorisation.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -8,17 +9,20 @@ import { AutorisationService } from 'src/app/commons/services/autorisation.servi
 })
 export class LoginFormComponent implements OnInit {
 
-    @Output() action: EventEmitter<number|string> = new EventEmitter<number|string>();
-
-    constructor(private autorisation: AutorisationService) { }
+    constructor(
+        public autorisation: AutorisationService,
+        private router: Router
+    ) { }
 
     ngOnInit() {
     }
 
-    logInPush() {
-        this.action.emit('logInAction');
+    logout() {
+        this.autorisation.logout();
+        this.router.navigate(['/login']);
     }
-    logOutPush() {
-        this.action.emit('logOutAction');
+
+    login() {
+        this.router.navigate(['/login']);
     }
 }

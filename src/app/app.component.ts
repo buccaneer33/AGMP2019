@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AutorisationService } from 'src/app/commons/services/autorisation.service';
+import {AutorisationService} from './commons/services/autorisation.service';
 
 @Component({
     selector: 'app-root',
@@ -7,15 +7,8 @@ import { AutorisationService } from 'src/app/commons/services/autorisation.servi
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    public isAutorised: boolean = false;
-
-    constructor(private autorisation: AutorisationService) {}
+    constructor(public autorisation: AutorisationService) {}
 
     ngOnInit() {
-        this.isAutorised$();
-    }
-
-    isAutorised$() {
-        this.isAutorised = this.autorisation.isAutificated;
     }
 }

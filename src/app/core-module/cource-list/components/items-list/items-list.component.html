@@ -1,7 +1,7 @@
 <div>
     <div class="tool-block">
         <div class="tool-block__wrapper">
-            <app-search-bar (searchRes)="getSearchRes($event)"></app-search-bar>
+            <app-search-bar (searchRes)="searchRes($event)"></app-search-bar>
         </div>
         <div class="tool-block__button btn btn--add">Add Cource</div>
 
@@ -11,8 +11,8 @@
         <app-cource-item
             *ngFor="let courceItem of courceList | orderBy: 'crationDate'" 
             [courceItem]="courceItem" 
-            (chooseDelete)="getDeleteItem($event)"
-            (chooseEdit)="getEditItem($event)">
+            (chooseDelete)="deleteItem($event)"
+            (chooseEdit)="editItem($event)">
         </app-cource-item>
         <div class="items-list__load-more">
             <a href="#">load more</a>
