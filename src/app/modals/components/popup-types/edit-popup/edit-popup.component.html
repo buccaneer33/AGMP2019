@@ -1,0 +1,91 @@
+<div class="edit-popup">
+    <div class="edit-popup__header">{{popupTitle}}</div>
+    <div  class="edit-popup__body">
+        <div class="edit-popup__input-block">
+            <div class="edit-popup__login-label">Title</div>
+            <div class="edit-popup__input-block">
+                <input class="edit-popup__input"
+                    type="text"
+                    placeholder="Ented title"
+                    [(ngModel)]="popupData.title"
+                    name="title"
+                    #title="ngModel" required/>
+            </div>
+        </div>
+        <div class="edit-popup__area-block">
+            <div class="edit-popup__login-label">Description</div>
+            <div class="edit-popup__input-block">
+                <textarea class="edit-popup__area" 
+                    type="text" 
+                    placeholder="Ented description" 
+                    [(ngModel)]="popupData.description"
+                    name="description"
+                    #description="ngModel" required>
+                </textarea>
+            </div>
+        </div>
+        <div class="edit-popup__input-block">
+            <div class="edit-popup__login-label">Date</div>
+            <div class="edit-popup__input-block">
+                <input class="edit-popup__input edit-popup__input--short"
+                    type="text"
+                    placeholder="Ented date"
+                    [(ngModel)]="popupData.crationDate"
+                    name="crationDate"
+                    #crationDate="ngModel" required/>
+            </div>
+        </div>
+        <div class="edit-popup__input-block">
+            <div class="edit-popup__login-label">Duration</div>
+            <div class="edit-popup__input-wrapper">
+                <input class="edit-popup__input edit-popup__input--short"
+                    type="text"
+                    placeholder="Ented duration"
+                    [(ngModel)]="popupData.duration"
+                    name="duration"
+                    #duration="ngModel" required/>
+                <label>{{popupData.duration | hours}}</label>
+            </div>
+        </div>
+        <div class="edit-popup__input-block edit-popup__input-block--checkbox">
+            <div class="edit-popup__login-label edit-popup__login-label--short">Top Rated</div>
+            <div class="edit-popup__input-block">
+                <input class="edit-popup__input edit-popup__input--short"
+                    type="checkbox"
+                    placeholder="Ented topRated"
+                    [(ngModel)]="popupData.topRated"
+                    name="topRated"
+                    #topRated="ngModel" required/>
+            </div>
+        </div>
+        <div class="edit-popup__input-block">
+            <div class="edit-popup__login-label">{{popupTitle}}</div>
+            <div class="edit-popup__input-block">
+                <input class="edit-popup__input"
+                    type="text"
+                    placeholder="Ented author"
+                    [(ngModel)]="popupData.author"
+                    name="author"
+                    #author="ngModel" required/>
+            </div>
+        </div>
+    </div>
+    <div class="edit-popup__footer">
+        <button 
+            class="edit-popup__button login-popup__button--ok"
+            *ngIf="data.buttons.ok"
+            (click)="clickOk()"
+            [disabled]="
+            title.invalid ||
+            description.invalid ||
+            crationDate.invalid ||
+            duration.invalid ||
+            author.invalid">ok
+        </button>
+        <button
+            class="edit-popup__button login-popup__button--cancel"
+            *ngIf="data.buttons.cancel"
+            (click)="clickCancel()">cancel
+        </button>
+    </div>
+</div>

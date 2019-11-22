@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CoreModuleModule } from '../core-module/core-module.module';
 
 import { ModalsOverlayComponent } from './components/modals-overlay/modals-overlay.component';
 import {
@@ -8,13 +9,15 @@ import {
 } from './components/popup-types/confirm-popup/confirm-popup.component';
 import { LoginPopupComponent } from './components/popup-types/login-popup/login-popup.component';
 import { PopupHostDirective } from './directive/popup-host.directive';
+import { EditPopupComponent } from './components/popup-types/edit-popup/edit-popup.component';
 
 const COMPONENTS = [
     ModalsOverlayComponent
   ];
   const MODALS_TYPES = [
     ConfirmPopupComponent,
-    LoginPopupComponent
+    LoginPopupComponent,
+    EditPopupComponent
   ];
 
 @NgModule({
@@ -25,7 +28,8 @@ const COMPONENTS = [
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    CoreModuleModule
   ],
   exports: [
     ...COMPONENTS

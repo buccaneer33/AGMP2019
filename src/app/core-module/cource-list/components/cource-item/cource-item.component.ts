@@ -1,10 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    Input,
+    Output,
+    EventEmitter
+} from '@angular/core';
 import { CourceInterface } from 'src/app/core-module/cource-list/interfaces/CourceInterface';
 
 @Component({
   selector: 'app-cource-item',
   templateUrl: './cource-item.component.html',
-  styleUrls: ['./cource-item.component.scss']
+  styleUrls: ['./cource-item.component.scss'],
 })
 export class CourceItemComponent implements OnInit {
 

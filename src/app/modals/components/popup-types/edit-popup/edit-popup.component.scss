@@ -1,10 +1,10 @@
 @import '../../../../../scss/main.scss';
 
-.login-popup {
-    width: 30vw;
-    min-width: 400px;
-    height: 30vh;
-    min-height: 300px;
+.edit-popup {
+    width: 50vw;
+    min-width: 800px;
+    height: 50vh;
+    min-height: 600px;
     background-color: $app-bg-color;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     border-radius: 1vw;
@@ -54,45 +54,64 @@
         color: $header-font-color;
         border: 1px solid $btn-bg-color;
     }
-    &__login-block{
-        flex-grow: 1;
+    &__input-block{
+        flex-basis: 3rem;
         display: flex;
         flex-direction: column;
         align-items: stretch;
         justify-content: space-around;
-        padding: 0.5rem 1rem;
+        padding: 0.1rem 1rem;
+
+        &--checkbox{
+            flex-basis: 1rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0.1rem 1rem;
+        }
     }
-    &__password-block{
-        flex-grow: 1;
+    &__area-block{
+        flex-basis: 5rem;
         display: flex;
         flex-direction: column;
         align-items: stretch;
         justify-content: space-around;
-        padding: 0.5rem 1rem;
+        padding: 0.1rem 1rem;
+    }
+    &__area{
+        width: 100%;
+        height: 6rem;
+        resize: none;
     }
     &__input{
-        padding: 0.5rem 1rem;
+        padding: 0.1rem 1rem;
         width: 100%;
         box-sizing: border-box;
+
+        &--short{
+            width: 30%;
+            margin-right: 1rem;
+        }
+    }
+    &__input-wrapper{
+        display: flex;
+        flex-direction: row;
+        padding: 0.1rem 1rem;
     }
     &__login-label{
         position: relative;
+        width: 100%;
+        padding: 0 1rem;
 
-        &::after{
-            content: '*required';
-            position: absolute;
-            right: 0;
-            font-size: 0.5rem;
-            color: darken($search-bar-text-color, 20%);
-            text-transform: lowercase;
+        &--short{
+            width: 20%;
+            margin-right: 1rem;
         }
     }
-    &__forgot-block{
-        flex-grow: 1;
-        text-align: left;
-        padding-left: 20px;
-    }
-    &__forgot-link{
-        color: $btn-bg-color;
-    }
+}
+.edit-popup__button:disabled, .edit-popup__button[disabled] {
+    background-color: $footer-font-color;
+    color: $header-font-color;
+    border: 1px solid $footer-font-color;
 }

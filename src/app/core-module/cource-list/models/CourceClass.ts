@@ -7,4 +7,5 @@ export class CourceClass implements CourceInterface {
     public duration: string | number = 245;
     public topRated: boolean = true;
     public description: string = 'Description';
+    public author: string = 'author';
 }
