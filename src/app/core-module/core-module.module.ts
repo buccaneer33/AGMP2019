@@ -43,6 +43,7 @@ const PIPES = [
   ],
   exports: [
     ...COMPONENTS,
+    ...PIPES
   ]
 })
 export class CoreModuleModule { }

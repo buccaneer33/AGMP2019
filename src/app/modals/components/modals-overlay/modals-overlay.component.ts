@@ -16,6 +16,7 @@ import { PopupDisplayDataInterface } from 'src/app/modals/models/PopupDisplayDat
 import {
     LoginPopupComponent
 } from 'src/app/modals/components/popup-types/login-popup/login-popup.component';
+import { EditPopupComponent } from '../popup-types/edit-popup/edit-popup.component';
 
 @Component({
     selector: 'app-modals-overlay',
@@ -31,7 +32,8 @@ export class ModalsOverlayComponent implements OnInit {
 
     POPUP_TYPES: object = {
         'confirm-popup': ConfirmPopupComponent,
-        'login-popup': LoginPopupComponent
+        'login-popup': LoginPopupComponent,
+        'edit-popup': EditPopupComponent
     };
 
     constructor(

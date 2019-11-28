@@ -1,13 +1,12 @@
-<div>
+<div class="items-block">
     <div class="tool-block">
         <div class="tool-block__wrapper">
             <app-search-bar (searchRes)="searchRes($event)"></app-search-bar>
         </div>
-        <div class="tool-block__button btn btn--add">Add Cource</div>
+        <div class="tool-block__button btn btn--add" (click)="addItem()">Add Cource</div>
 
     </div>
-    <div *ngIf="courceList" class="items-list">
-        <div *ngIf="noDataMessage" class="items-list__load-more">NO DATA Message</div>
+    <div *ngIf="courceList.length" class="items-list">
         <app-cource-item
             *ngFor="let courceItem of courceList | orderBy: 'crationDate'" 
             [courceItem]="courceItem" 
@@ -18,4 +17,5 @@
             <a href="#">load more</a>
         </div>
     </div>
+    <div *ngIf="!courceList.length" class="items-list__load-more">NO DATA Message</div>
 </div>

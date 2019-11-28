@@ -1,31 +1,44 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CourceInterface } from 'src/app/core-module/cource-list/interfaces/CourceInterface';
 import { CourceService } from 'src/app/core-module/cource-list/services/cource.service';
 import { ModalsServiceService } from 'src/app/modals/services/modals-service.service';
 
+
 @Component({
   selector: 'app-items-list',
   templateUrl: './items-list.component.html',
-  styleUrls: ['./items-list.component.scss']
+  styleUrls: ['./items-list.component.scss'],
 })
 export class ItemsListComponent implements OnInit {
 
     public courceList: CourceInterface[];
-    public noDataMessage: boolean = true;
     private filter: string;
 
     constructor(
         private courceService: CourceService,
-        private modalsService: ModalsServiceService,
+        private modalsService: ModalsServiceService
         ) { }
 
     ngOnInit() {
         this.courceList = this.courceService.getCourceList();
     }
-    editItem(event: CourceInterface) {
-        console.log(event);
+    editItem(event: CourceInterface): void {
+        this.modalsService.showPopup(
+            {
+                displayComponent: 'edit-popup',
+                buttons: {
+                    ok: true,
+                    cancel: true
+                },
+                popupData: event
+            }).subscribe( result => {
+                if (result.status) {
+                    this.courceService.updateCource(result.data);
+                    this.courceList = this.courceService.getCourceList(this.filter);
+                }
+            });
     }
-    deleteItem(event: CourceInterface) {
+    deleteItem(event: CourceInterface): void {
         this.modalsService.showPopup(
             {
                 displayComponent: 'confirm-popup',
@@ -41,8 +54,24 @@ export class ItemsListComponent implements OnInit {
                 }
             });
     }
-    searchRes(filter: string) {
-        this.filter = filter;
-        this.courceList = this.courceService.getCourceList(filter);
+    addItem() {
+        this.modalsService.showPopup(
+            {
+                displayComponent: 'edit-popup',
+                buttons: {
+                    ok: true,
+                    cancel: true
+                },
+                popupData: null
+            }).subscribe( result => {
+                if (result.status) {
+                    this.courceService.createCource(result.data);
+                    this.courceList = this.courceService.getCourceList(this.filter);
+                }
+            });
+    }
+    searchRes(event: string): void {
+        this.filter = event;
+        this.courceList = this.courceService.getCourceList(event);
     }
 }

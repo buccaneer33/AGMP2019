@@ -20,16 +20,20 @@ export class CourceService {
         return this.courceList;
     }
 
-    createCource() {
-        console.log('createCource');
+    createCource(item: CourceInterface) {
+        console.log(item);
+        this.courceList = this.courceList.slice(0);
+        this.courceList.push(item);
      }
 
     getCourceById( id: number | string): CourceInterface {
         return this.courceList.find(obj => obj.id === id);
     }
 
-    updateCource() {
-        console.log('updateCource');
+    updateCource(item: CourceInterface) {
+        const index = this.courceList.findIndex(obj => obj.id === item.id);
+        this.courceList = this.courceList.slice(0);
+        this.courceList.splice(index, 1, item);
     }
 
     removeCource(id: number | string) {
