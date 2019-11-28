@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CourceInterface } from 'src/app/core-module/cource-list/interfaces/CourceInterface';
 import { CourceService } from 'src/app/core-module/cource-list/services/cource.service';
 import { ModalsServiceService } from 'src/app/modals/services/modals-service.service';
@@ -8,7 +8,6 @@ import { ModalsServiceService } from 'src/app/modals/services/modals-service.ser
   selector: 'app-items-list',
   templateUrl: './items-list.component.html',
   styleUrls: ['./items-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItemsListComponent implements OnInit {
 
@@ -17,8 +16,7 @@ export class ItemsListComponent implements OnInit {
 
     constructor(
         private courceService: CourceService,
-        private modalsService: ModalsServiceService,
-        private cdr: ChangeDetectorRef
+        private modalsService: ModalsServiceService
         ) { }
 
     ngOnInit() {
@@ -37,7 +35,6 @@ export class ItemsListComponent implements OnInit {
                 if (result.status) {
                     this.courceService.updateCource(result.data);
                     this.courceList = this.courceService.getCourceList(this.filter);
-                    this.cdr.detectChanges();
                 }
             });
     }
@@ -54,7 +51,6 @@ export class ItemsListComponent implements OnInit {
                 if (result.status) {
                     this.courceService.removeCource(event.id);
                     this.courceList = this.courceService.getCourceList(this.filter);
-                    this.cdr.detectChanges();
                 }
             });
     }
@@ -71,7 +67,6 @@ export class ItemsListComponent implements OnInit {
                 if (result.status) {
                     this.courceService.createCource(result.data);
                     this.courceList = this.courceService.getCourceList(this.filter);
-                    this.cdr.detectChanges();
                 }
             });
     }

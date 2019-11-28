@@ -3,7 +3,7 @@ import {
     OnInit,
     Input,
     Output,
-    EventEmitter
+    EventEmitter, ChangeDetectionStrategy
 } from '@angular/core';
 import { CourceInterface } from 'src/app/core-module/cource-list/interfaces/CourceInterface';
 
@@ -11,6 +11,7 @@ import { CourceInterface } from 'src/app/core-module/cource-list/interfaces/Cour
   selector: 'app-cource-item',
   templateUrl: './cource-item.component.html',
   styleUrls: ['./cource-item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CourceItemComponent implements OnInit {
 
