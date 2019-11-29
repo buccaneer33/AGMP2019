@@ -8,10 +8,10 @@ import {
 import { CourceInterface } from 'src/app/core-module/cource-list/interfaces/CourceInterface';
 
 @Component({
-  selector: 'app-cource-item',
-  templateUrl: './cource-item.component.html',
-  styleUrls: ['./cource-item.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-cource-item',
+    templateUrl: './cource-item.component.html',
+    styleUrls: ['./cource-item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourceItemComponent implements OnInit {
 

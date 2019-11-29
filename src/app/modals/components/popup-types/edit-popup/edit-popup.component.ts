@@ -9,31 +9,38 @@ import { CourceInterface } from 'src/app/core-module/cource-list/interfaces/Cour
 })
 export class EditPopupComponent extends AbstractPopupComponent implements OnInit {
 
-    public popupTitle = 'Add Cource';
-    public popupData: CourceInterface = {
-        id: '',
-        title: '',
-        description: '',
-        crationDate: new Date().toDateString(),
-        duration: '',
-        topRated: false,
-        author: ''
-    };
+    private _popupData: CourceInterface;
+
+    public setPopupData(value: CourceInterface) {
+        this._popupData = value
+        ? Object.assign({
+            id: '',
+            title: '',
+            description: '',
+            crationDate: new Date().toDateString(),
+            duration: '',
+            topRated: false,
+            author: ''
+        }, value)
+        : Object.assign({
+            id: '',
+            title: '',
+            description: '',
+            crationDate: new Date().toDateString(),
+            duration: '',
+            topRated: false,
+            author: ''
+        });
+    }
 
     ngOnInit() {
-        this.setParams();
+        this.setPopupData(this.data.popupData);
     }
     public clickOk(): void {
         this.data.resultEvent.next( {
             status: true,
-            data: this.popupData
+            data: this._popupData
         });
         this.hideOverlay();
-    }
-    private setParams(): void {
-        if (this.data.popupData !== null) {
-            this.popupTitle = 'Edit Cource';
-            this.popupData = this.data.popupData;
-        }
     }
 }

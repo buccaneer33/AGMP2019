@@ -41,7 +41,7 @@ export const courceListStub: CourceInterface[] = [
         author: 'Somebody'
     },
     {
-        id: 26,
+        id: 27,
         title: 'BrainFuck',
         crationDate: 'Thu, 14 Aug 2019 14:27:09 GMT',
         duration: 20,
