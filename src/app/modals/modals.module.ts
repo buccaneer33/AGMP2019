@@ -10,6 +10,9 @@ import {
 import { LoginPopupComponent } from './components/popup-types/login-popup/login-popup.component';
 import { PopupHostDirective } from './directive/popup-host.directive';
 import { EditPopupComponent } from './components/popup-types/edit-popup/edit-popup.component';
+import {
+    EditFormComponent } from './components/popup-types/edit-popup/edit-form/edit-form.component';
+import { AddFormComponent } from './components/popup-types/edit-popup/add-form/add-form.component';
 
 const COMPONENTS = [
     ModalsOverlayComponent
@@ -17,14 +20,16 @@ const COMPONENTS = [
   const MODALS_TYPES = [
     ConfirmPopupComponent,
     LoginPopupComponent,
-    EditPopupComponent
+    EditPopupComponent,
   ];
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
     ...MODALS_TYPES,
-    PopupHostDirective
+    PopupHostDirective,
+    EditFormComponent,
+    AddFormComponent,
   ],
   imports: [
     CommonModule,
