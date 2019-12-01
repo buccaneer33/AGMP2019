@@ -18,7 +18,7 @@ export class AutorisationService {
         this.userLogin = localStorage.getItem('userLogin');
     }
 
-    get isAutificated(): boolean {
+   isAutificated(): boolean {
         return !!this.userLogin;
     }
 

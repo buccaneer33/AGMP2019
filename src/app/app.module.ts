@@ -18,7 +18,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     CommonsModule,
     ModalsModule,
     CoreModuleModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

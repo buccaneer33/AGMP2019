@@ -6,11 +6,12 @@ import { LoginPageComponent } from 'src/app/core-module/login-page/login-page.co
 import {
     ItemsListComponent
 } from 'src/app/core-module/cource-list/components/items-list/items-list.component';
+import { AuthGuard } from './commons/guards/auth.guard';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginPageComponent },
-    { path: 'list', component: ItemsListComponent},
+    { path: 'list', component: ItemsListComponent, canActivate: [AuthGuard]},
     { path: '**', component: NotFoundComponent }
 ];
 
