@@ -1,0 +1,76 @@
+<div class="new__header">{{popupTitle}}</div>
+<div class="new__body">
+    <div class="new__input-block">
+        <div class="new__login-label">Title</div>
+        <div class="new__input-block">
+            <input class="new__input"
+                type="text"
+                placeholder="Ented title"
+                [(ngModel)]="popupData.title"/>
+        </div>
+    </div>
+    <div class="new__area-block">
+        <div class="new__login-label">Description</div>
+        <div class="new__input-block">
+            <textarea class="new__area" 
+                type="text" 
+                placeholder="Ented description" 
+                [(ngModel)]="popupData.description">
+            </textarea>
+        </div>
+    </div>
+    <div class="new__input-block">
+        <div class="new__login-label">Date</div>
+        <div class="new__input-block">
+            <input class="new__input new__input--short"
+                type="text"
+                placeholder="Ented date"
+                [(ngModel)]="popupData.crationDate"/>
+        </div>
+    </div>
+    <div class="new__input-block">
+        <div class="new__login-label">Duration</div>
+        <div class="new__input-wrapper">
+            <input class="new__input new__input--short"
+                type="number"
+                placeholder="Ented duration"
+                [(ngModel)]="popupData.duration"/>
+            <label>{{popupData.duration | hours}}</label>
+        </div>
+    </div>
+    <div class="new__input-block new__input-block--checkbox">
+        <div class="new__login-label new__login-label--short">Top Rated</div>
+        <div class="new__input-block">
+            <input class="new__input new__input--short"
+                type="checkbox"
+                placeholder="Ented topRated"
+                [(ngModel)]="popupData.topRated"/>
+        </div>
+    </div>
+    <div class="new__input-block">
+        <div class="new__login-label">{{popupTitle}}</div>
+        <div class="new__input-block">
+            <input class="new__input"
+                type="text"
+                placeholder="Ented author"
+                [(ngModel)]="popupData.author"/>
+        </div>
+    </div>
+</div>
+<div class="new__footer">
+    <button 
+        class="new__button login-popup__button--ok"
+        (click)="clickOk()"
+        [disabled]="
+        !popupData.title ||
+        !popupData.description ||
+        !popupData.crationDate ||
+        !popupData.duration ||
+        !popupData.author
+        ">ok
+    </button>
+    <button
+        class="new__button login-popup__button--cancel"
+        (click)="clickCancel()">cancel
+    </button>
+</div>
