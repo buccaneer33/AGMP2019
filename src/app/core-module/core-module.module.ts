@@ -19,7 +19,6 @@ import { CourceDateDirective } from './cource-list/directives/cource-date.direct
 import { HoursPipe } from './cource-list/pipes/hours.pipe';
 import { OrderByPipe } from './cource-list/pipes/order-by.pipe';
 import { ItemComponent } from './cource-list/components/item/item.component';
-import { NewComponent } from './cource-list/components/new/new.component';
 import { ListComponent } from './cource-list/components/list/list.component';
 
 
@@ -42,7 +41,6 @@ const PIPES = [
     ...PIPES,
     CourceDateDirective,
     ItemComponent,
-    NewComponent,
     ListComponent,
   ],
   imports: [
