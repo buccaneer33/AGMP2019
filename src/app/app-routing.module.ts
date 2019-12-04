@@ -7,7 +7,6 @@ import {
     ItemsListComponent
 } from 'src/app/core-module/cource-list/components/items-list/items-list.component';
 import { ItemComponent } from './core-module/cource-list/components/item/item.component';
-import { NewComponent } from './core-module/cource-list/components/new/new.component';
 import { ListComponent } from './core-module/cource-list/components/list/list.component';
 import { AuthGuard } from './commons/guards/auth.guard';
 
@@ -20,7 +19,7 @@ const routes: Routes = [
         {path: '', component: ItemsListComponent},
         {path: 'item/:id', component: ItemComponent,
             data: {breadcrumb: 'item'}},
-        {path: 'new', component: NewComponent,
+        {path: 'new', component: ItemComponent,
             data: {breadcrumb: 'new cource'}}
 
         ]
