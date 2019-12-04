@@ -11,12 +11,12 @@ export class LoginPageComponent implements OnInit {
     public login: string = '';
     public password: string = '';
 
-    constructor(private autorisation: AutorisationService) { }
+    constructor(private auth: AutorisationService) { }
 
     ngOnInit() {
     }
 
     clickLogin() {
-        this.autorisation.login(this.login, this.password);
+        this.auth.login(this.login, this.password);
     }
 }

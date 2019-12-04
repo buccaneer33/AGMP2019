@@ -27,7 +27,7 @@ export class CourceService {
      }
 
     getCourceById( id: number | string): CourceInterface {
-        return this.courceList.find(obj => obj.id === id);
+        return this.courceList.find(obj => obj.id === Number(id));
     }
 
     updateCource(item: CourceInterface) {
@@ -42,5 +42,21 @@ export class CourceService {
             this.courceList = this.courceList.slice(0);
             this.courceList.splice(index, 1);
         }
+    }
+    getMaxId(): number {
+        const res = this.courceList.slice(0);
+        let max: number;
+        res.forEach( item  => {
+            if (!max) {
+                max = Number(item.id);
+            } else {
+                max = max < Number(item.id) ? Number(item.id) : max;
+            }
+        });
+        return max;
+    }
+    getNewId(): number {
+        let max = this.getMaxId();
+        return ++max;
     }
 }
