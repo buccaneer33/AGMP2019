@@ -1,0 +1,24 @@
+<div class="edit-popup">
+    <app-edit-form *ngIf="data.popupData" [(popupData)]="_popupData"></app-edit-form>
+    <app-add-form *ngIf="!data.popupData" [(popupData)]="_popupData"></app-add-form>
+
+    <div class="edit-popup__footer">
+        <button 
+            class="edit-popup__button login-popup__button--ok"
+            *ngIf="data.buttons.ok"
+            (click)="clickOk()"
+            [disabled]="
+            !_popupData.title ||
+            !_popupData.description ||
+            !_popupData.crationDate ||
+            !_popupData.duration ||
+            !_popupData.author
+            ">ok
+        </button>
+        <button
+            class="edit-popup__button login-popup__button--cancel"
+            *ngIf="data.buttons.cancel"
+            (click)="clickCancel()">cancel
+        </button>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+@import "../../../../scss/variables.scss";
+
+.header-login-form{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+
+    &__input{
+        background-color: $header-bg-color;
+        color: $header-font-color;
+        border: none;
+        width: 130px;
+        height: 24px;
+    }
+    *::-webkit-input-placeholder {
+        color: $header-font-color;
+    }
+    *:-moz-placeholder {
+        /* FF 4-18 */
+        color: $header-font-color;
+        opacity: 1;
+    }
+    *::-moz-placeholder {
+        /* FF 19+ */
+        color: $header-font-color;
+        opacity: 1;
+    }
+    *:-ms-input-placeholder {
+        /* IE 10+ */
+        color: $header-font-color;
+    }
+    *::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: $header-font-color;
+    }
+    *::placeholder {
+        /* modern browser */
+        color: $header-font-color;
+    }
+    &__input-block{
+        background-image: url('../../../../assets/icons/person.svg');
+        background-repeat: no-repeat;
+        background-position: center left;
+        height: 12px;
+        background-size: 12px;
+        padding: 0 2%;
+        padding: 0 0 0 25px ;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        margin-right: 20px;
+    }
+
+    &__button{
+        background-color: $header-bg-color;
+        color: $header-font-color;
+        border: none;
+        cursor: pointer;
+    }
+    &__button-block{
+        @extend .header-login-form__input-block;
+        background-image: url('../../../../assets/icons/logoff.svg');
+    }
+}
+

@@ -1,0 +1,62 @@
+@import './variables.scss';
+
+.btn{
+    display: block;
+    border-radius: 5px;
+    color: $btn-text-color;
+    padding: 1% 2%;
+    width: 70px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    &--basic{
+        background-color: $btn-bg-color;
+        border: 1px solid $btn-bg-color;
+    }
+    &--success{
+        background-color: $btn-active-bg-color;
+        border: 1px solid $btn-active-bg-color;
+    }
+    &--add{
+        width: 140px;
+        padding-left: 30px;
+        border: 1px solid $btn-bg-color;
+        background: url('src/assets/icons/plus.svg') $btn-bg-color;
+        background-repeat: no-repeat;
+        background-size: 20px;
+        background-position: 10px 8px;
+        padding: 9px 24px 9px 48px;
+    }
+    &--edit{
+        padding-left: 27px;
+        border: 1px solid $btn-bg-color;
+        background: url('src/assets/icons/edit.svg') $btn-bg-color;
+        background-repeat: no-repeat;
+        background-size: 17px;
+        background-position: 5px 0px;
+    }
+    &--delete{
+        padding-left: 27px;
+        border: 1px solid $btn-bg-color;
+        background: url('src/assets/icons/delete.svg') $btn-bg-color;
+        background-repeat: no-repeat;
+        background-size: 15px;
+        background-position: 5px 2px;
+    }
+}
+.icon{
+    &--clock{
+        padding-left: 25px;
+        background: url('src/assets/icons/clock.svg');
+        background-repeat: no-repeat;
+        background-size: 12px;
+        background-position: 5px 2px;
+    }
+    &--date{
+        padding-left: 25px;
+        background: url('src/assets/icons/ic_calendar.svg');
+        background-repeat: no-repeat;
+        background-size: 12px;
+        background-position: 5px 2px;
+    }
+}

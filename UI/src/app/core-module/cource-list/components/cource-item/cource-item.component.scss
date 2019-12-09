@@ -1,0 +1,66 @@
+@import '../../../../../scss/main.scss';
+.cource-item{
+    background-color: $cource-bg-cource;
+    border: 1px solid $cource-bg-cource;
+    border-radius: 8px;
+    height: 163px - 48px;
+    margin: 12px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    padding: 24px 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+    &__infoblock{
+        width: 80%;
+    }
+    &__actionblock{
+        width: 15%;
+        min-width: 150px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-around;
+    }
+    &__header{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        justify-content: center;
+    }
+    &__title{
+        flex-basis: 80%;
+    }
+    &__info{
+        flex-basis: 20%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-around;
+        color: $cource-icon-color;
+
+        div{
+            margin: 0 1%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: stretch;
+            justify-content: space-around;
+        }
+    }
+    &--star{
+        padding-left: 27px;
+        background: url('src/assets/icons/star.svg');
+        background-repeat: no-repeat;
+        background-size: 17px;
+        background-position: 5px 0px;
+    }
+    &--rate{
+        background-color: darken($cource-bg-cource,10%);
+    }
+}
+

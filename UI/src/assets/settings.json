@@ -1,0 +1,10 @@
+{
+    "api": "http://localhost:3004/",
+    "pageTitle": "Cources",
+    "debounceTime": 500,
+    "cources": "courses",
+    "authors": "authors",
+    "users": "users",
+    "login": "auth/login",
+    "userInfo": "auth/userInfo"
+}
