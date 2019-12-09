@@ -6,7 +6,6 @@ import { ApiService } from 'src/app/commons/services/api.service';
 import { Subject, Observable } from 'rxjs';
 import { SettingsService } from '../../../commons/services/settings.service';
 import { filter } from 'rxjs/operators';
-import { headersToString } from 'selenium-webdriver/http';
 
 @Injectable({
     providedIn: 'root'
@@ -14,15 +13,13 @@ import { headersToString } from 'selenium-webdriver/http';
 export class CourceService {
 
     private courceList: Subject<any>;
-    private apiList: any;
 
     constructor(
         public api: ApiService,
         private http: HttpClient,
         private settings: SettingsService
-) {
+    ) { }
 
-    }
     loadCourceData(): void {
         this.settings.getSettings$().subscribe(settings => {
             const url = settings.api + settings.cources;
@@ -43,29 +40,26 @@ export class CourceService {
             const header = new HttpHeaders();
             const param = new HttpParams()
             .set('filter', search);
-            this.http.get( url, { headers: header, params: param } ).subscribe(
+            this.http.get(url, { headers: header, params: param }).subscribe(
                 res => {
                     this.courceList.next(this.convertCourceData(res));
                 },
                 error => {});
         });
     }
+
     getCourceList(search?: string): any {
         if (search) {
-            if (!this.courceList) {
-                this.courceList = new Subject();
-                this.loadSortedData(search);
-            }
+            this.courceList = new Subject();
+            this.loadSortedData(search);
             return this.courceList.asObservable().pipe(filter(data => data !== null));
         } else {
-            if (!this.courceList) {
-                this.courceList = new Subject();
-                this.loadCourceData();
-            }
+            this.courceList = new Subject();
+            this.loadCourceData();
             return this.courceList.asObservable().pipe(filter(data => data !== null));
         }
-
     }
+
     convertCourceData(list): CourceInterface[] {
         const cources: CourceInterface[] = [];
         list.forEach(item => {
@@ -105,8 +99,27 @@ export class CourceService {
         });
     }
 
-    getCourceById( id: number | string) /*: CourceInterface*/ {
-        /*return this.courceList.find(obj => obj.id === Number(id));*/
+    getCourceById( id: number | string): any {
+        this.settings.getSettings$().subscribe(settings => {
+            const url = settings.api + settings.cources;
+            const header = new HttpHeaders();
+            const param = new HttpParams()
+            .set('$id ', String(id));
+            this.http.get( url, { headers: header, params: param }).subscribe(
+                res => {
+                    const cource: CourceInterface = {
+                        id: (res as any).id,
+                        title: (res as any).name,
+                        crationDate: (res as any).date,
+                        duration: (res as any).length,
+                        topRated: (res as any).isTopRated,
+                        description: (res as any).description,
+                        author: (res as any).authors[0].name
+                    };
+                    return cource;
+                },
+                error => {});
+        });
     }
 
     updateCource(item: CourceInterface) {
@@ -115,12 +128,12 @@ export class CourceService {
         this.courceList.splice(index, 1, item);*/
     }
 
-    removeCource(id: string) {
+    removeCource(id: string | number) {
         this.settings.getSettings$().subscribe(settings => {
             const url = settings.api + settings.cources;
             const header = new HttpHeaders();
             const param = new HttpParams()
-            .set('$id ', id);
+            .set('$id ', String(id));
             this.http.delete( url, { headers: header, params: param } ).subscribe(
                 res => {
                     this.courceList.next( this.getCourceList());
