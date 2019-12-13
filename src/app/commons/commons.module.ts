@@ -17,16 +17,16 @@ const COMPONENTS = [
   ];
 
 @NgModule({
-  declarations: [
-    ...COMPONENTS,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    AppRoutingModule
-  ],
-  exports: [
-    ...COMPONENTS,
-  ]
+    declarations: [
+        ...COMPONENTS,
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        AppRoutingModule,
+    ],
+    exports: [
+        ...COMPONENTS,
+    ],
 })
 export class CommonsModule { }

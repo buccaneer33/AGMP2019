@@ -21,6 +21,10 @@ export class ItemsListComponent implements OnInit {
 
     ngOnInit() {
         this.courceList = this.courceService.getCourceList();
+        // console.log(this.courceList);
+    }
+    getList() {
+
     }
     editItem(event: CourceInterface): void {
         this.modalsService.showPopup(

@@ -7,9 +7,9 @@
         <a class="tool-block__button btn btn--add" routerLink = "new">Add Cource</a>
 
     </div>
-    <div *ngIf="courceList.length" class="items-list">
+    <div *ngIf="courceList" class="items-list">
         <app-cource-item
-            *ngFor="let courceItem of courceList | orderBy: 'crationDate'" 
+            *ngFor="let courceItem of courceList | orderBy: 'crationDate' | async" 
             [courceItem]="courceItem" 
             (chooseDelete)="deleteItem($event)"
             (chooseEdit)="editItem($event)">
@@ -18,5 +18,5 @@
             <a href="#">load more</a>
         </div>
     </div>
-    <div *ngIf="!courceList.length" class="items-list__load-more">NO DATA Message</div>
+    <div *ngIf="!courceList" class="items-list__load-more">NO DATA Message</div>
 </div>

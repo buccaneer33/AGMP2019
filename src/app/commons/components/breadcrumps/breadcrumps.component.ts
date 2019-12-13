@@ -38,7 +38,7 @@ export class BreadcrumpsComponent implements OnInit {
         url: string = '',
         breadcrumbs: BreadCrumb[] = []): BreadCrumb[] {
 
-        let label = route.routeConfig && route.routeConfig.data ?
+        let labelStr = route.routeConfig && route.routeConfig.data ?
             route.routeConfig.data.breadcrumb : '';
         let path = route.routeConfig && route.routeConfig.data ?
             route.routeConfig.path : '';
@@ -48,17 +48,17 @@ export class BreadcrumpsComponent implements OnInit {
         if (isDynamicRoute && !!route.snapshot) {
           const paramName = lastRoutePart.split(':')[1];
           path = path.replace(lastRoutePart, route.snapshot.params[paramName]);
-          label = route.snapshot.params[paramName];
+          labelStr = route.snapshot.params[paramName];
         }
 
         const nextUrl = path ? `${url}/${path}` : url;
 
         const breadcrumb: BreadCrumb = {
-            label: label,
+            label: labelStr,
             url: nextUrl,
         };
         if (Number(breadcrumb.label)) {
-            breadcrumb.label = this.courceService.getCourceById((Number(breadcrumb.label))).title;
+            breadcrumb.label = (this.courceService.getCourceById(Number(breadcrumb.label))).title;
         }
 
         const newBreadcrumbs = breadcrumb.label ?

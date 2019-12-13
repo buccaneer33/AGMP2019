@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AutorisationService } from 'src/app/commons/services/autorisation.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login-page',
@@ -11,7 +12,10 @@ export class LoginPageComponent implements OnInit {
     public login: string = '';
     public password: string = '';
 
-    constructor(private auth: AutorisationService) { }
+    constructor(
+        private auth: AutorisationService,
+        private router: Router
+    ) { }
 
     ngOnInit() {
     }
