@@ -1,7 +1,6 @@
 <div class="header-login-form" *ngIf="autorisation.isAutificated">
-    <div class="header-login-form__input-block">
-        <!--<input type="search" class="header-login-form__input" placeholder="User Login" />-->
-        <div class="header-login-form__button">{{autorisation.userInfo}}</div>
+    <div *ngIf="autorisation.isAutificated()" class="header-login-form__input-block">
+        <div class="header-login-form__button">{{autorisation.getUserInfo()}}</div>
     </div>
     <div class="header-login-form__button-block">
         <div class="header-login-form__button" (click)="logout()">Log Off</div>

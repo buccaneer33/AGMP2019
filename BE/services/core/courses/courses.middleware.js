@@ -42,7 +42,13 @@ module.exports = (server) => {
 			courses = courses.filter((item) => {
 				return item.id == id;
 			});
-		}
+        }
+        if (filter) {
+            const exp = new RegExp(filter, 'i');
+            courses = courses.filter((item) => {
+				return exp.test(item.name);
+			});
+        }
 
 		res.json(courses);
 	});
@@ -51,7 +57,22 @@ module.exports = (server) => {
 		let url_parts = url.parse(req.originalUrl, true);
 		let query = url_parts.query;
 		res.status(parseInt(query.code, 10)).send({message: 'Error'});
-	});
+    });
+
+    router.delete('/courses', (req, res, next) => {
+		let url_parts = url.parse(req.originalUrl, true),
+			query = url_parts.query,
+			from = query.start || 0,
+			to = +query.start + +query.count,
+			id = query.id,
+			courses = server.db.getState().courses;
+
+		if(id) {
+            index = courses.findIndex(value => value.id == Number(id))
+            courses = courses.splice(index, 1);
+		}
+        res.json(courses);
+	})
 
 	
 	return router;

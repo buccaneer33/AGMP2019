@@ -4,7 +4,16 @@
 
 export const environment = {
     production: false,
-    settings: '/assets/settings.json'
+    settings: '/assets/settings.json',
+};
+export const settings = {
+    api: 'http://localhost:3004/',
+    cources: 'courses',
+    authors: 'authors',
+    users: 'users',
+    login: 'auth/login',
+    userInfo: 'auth/userInfo',
+    debounceTime: 500,
 };
 
 /*
