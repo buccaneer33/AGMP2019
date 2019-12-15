@@ -1,5 +1,5 @@
 import { CourceInterface } from 'src/app/core-module/cource-list/interfaces/CourceInterface';
-export const courceListStub: CourceInterface[] = [
+export const courceListStub = [
     {
         id: 23,
         title: 'Angular Video Cource',

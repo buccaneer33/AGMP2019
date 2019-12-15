@@ -37,14 +37,14 @@ export class AutorisationService {
         };
         this.http.post(authUrl, authData).subscribe(
             res => {
-                const userUrl  = settings.api + settings.login;
+                const userUrl  = settings.api + settings.userInfo;
                 const body = { token: (res as any).token };
                 this.http.post(userUrl, body).subscribe(user => {
                     localStorage.setItem('token', (user as any).fakeToken);
                     this.userLogin = (user as any).name.first + ' ' + (user as any).name.last;
                     localStorage.setItem('userName', this.userLogin);
+                    this.router.navigate(['/list']);
                 });
-                this.router.navigate(['/list']);
             },
             error => {
                 this.modalsService.showPopup({

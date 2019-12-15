@@ -2,114 +2,126 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { CourceInterface } from 'src/app/core-module/cource-list/interfaces/CourceInterface';
 import { courceListStub } from 'src/assets/dev-stubs/cource-list';
-import { ApiService } from 'src/app/commons/services/api.service';
-import { Subject, Observable } from 'rxjs';
-import { SettingsService } from '../../../commons/services/settings.service';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
+// import { SettingsService } from '../../../commons/services/settings.service';
 import { filter } from 'rxjs/operators';
-import { ConverterService } from './converter.service';
+import { ConverterService, CourceApiInterface } from './converter.service';
+import { settings } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CourceService {
 
-    private courceList: Subject<any>;
+    private courceList: CourceInterface[];
+    private courceList$: Subject<any>;
+    private courceCount: number = 5;
+    private filter: string;
 
     constructor(
-        public api: ApiService,
         private http: HttpClient,
-        private settings: SettingsService,
         private converter: ConverterService
     ) { }
 
     loadCourceData(): void {
-        const url = this.settings.get('api') + this.settings.get('cources');
+        const url = settings.api + settings.cources;
         const header = new HttpHeaders();
         const param = new HttpParams()
         .set('start', '0')
-        .set('count', '5');
+        .set('count', String(this.courceCount));
         this.http.get( url, { headers: header, params: param } ).subscribe(
             res => {
-                this.courceList.next(this.converter.courceListApi2App(res as any));
+                this.courceList = this.converter.courceListApi2App(res as CourceApiInterface[]);
+                this.courceList$.next(
+                    this.converter.courceListApi2App(res as CourceApiInterface[])
+                );
             },
             error => {});
     }
     loadSortedData(search: string): void {
-        const url = this.settings.get('api') + this.settings.get('cources');
+        const url = settings.api + settings.cources;
         const header = new HttpHeaders();
         const param = new HttpParams()
-        .set('filter', search);
+        .set('textFragment', search)
+        .set('start', '0')
+        .set('count', String(this.courceCount));
         this.http.get(url, { headers: header, params: param }).subscribe(
             res => {
-                this.courceList.next(this.converter.courceListApi2App(res as any));
+                this.courceList$.next(
+                    this.converter.courceListApi2App(res as CourceApiInterface[])
+                );
             },
             error => {});
     }
 
+    loadCourceMore(): void {
+        this.courceCount += 5;
+        this.loadCourceData();
+    }
+
     getCourceList(search?: string): any {
         if (search) {
-            this.courceList = new Subject();
+            this.courceList$ = new Subject();
             this.loadSortedData(search);
         } else {
-            this.courceList = new Subject();
+            this.courceList$ = new Subject();
             this.loadCourceData();
         }
-        return this.courceList.asObservable().pipe(filter(data => data !== null));
+        return this.courceList$.asObservable().pipe(filter(data => data !== null));
     }
 
     createCource(item: CourceInterface) {
-        const url = this.settings.get('api') + this.settings.get('cources');
+        const url = settings.api + settings.cources;
         const cource = this.converter.convertApp2Api(item);
         this.http.post( url, cource ).subscribe(
             res => {
-                this.courceList.next( this.getCourceList());
+                this.courceList$.next( this.loadCourceData());
+            },
+            error => {});
+    }
+    updateCource(item: CourceInterface) {
+        const url = settings.api + settings.cources;
+        const cource = this.converter.convertApp2Api(item);
+        this.http.patch( url, cource ).subscribe(
+            res => {
+                this.courceList$.next( this.loadCourceData());
             },
             error => {});
     }
 
     getCourceById( id: number | string): any {
-        const url = this.settings.get('api') + this.settings.get('cources');
+        const url = settings.api + settings.cources;
         const header = new HttpHeaders();
         const param = new HttpParams()
-        .set('$id ', String(id));
+        .set('id ', String(id));
         this.http.get( url, { headers: header, params: param }).subscribe(
             res => {
-                return this.converter.convertApi2App(res as any);
+                return this.converter.convertApi2App(res as CourceApiInterface);
             },
             error => {});
     }
+    getCource(id: number): CourceInterface {
+       return (this.courceList.filter(item => item.id === Number(id)))[0];
+    }
 
-    updateCource(item: CourceInterface) {
-        /*const index = this.courceList.findIndex(obj => obj.id === item.id);
-        this.courceList = this.courceList.slice(0);
-        this.courceList.splice(index, 1, item);*/
+    returnCource(item: CourceInterface) {
+        if (!!item.id) {
+            this.updateCource(item);
+        } else {
+            this.createCource(item);
+        }
     }
 
     removeCource(id: string | number) {
-        const url = this.settings.get('api') + this.settings.get('cources');
+        const url = settings.api + settings.cources;
         const header = new HttpHeaders();
         const param = new HttpParams()
         .set('id', String(id));
         this.http.delete( url, { headers: header, params: param } ).subscribe(
             res => {
-                this.courceList.next(this.getCourceList());
+                this.courceList$.next(this.loadCourceData());
             },
             error => {});
     }
-    getMaxId(): number {
-        // const res = this.courceList.slice(0);
-        const max: number = 0;
-        /*res.forEach( item  => {
-            if (!max) {
-                max = Number(item.id);
-            } else {
-                max = max < Number(item.id) ? Number(item.id) : max;
-            }
-        });*/
-        return max;
-    }
-    getNewId(): number {
-        let max = this.getMaxId();
-        return ++max;
-    }
+
 }

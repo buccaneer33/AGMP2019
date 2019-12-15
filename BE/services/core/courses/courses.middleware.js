@@ -72,8 +72,34 @@ module.exports = (server) => {
             courses = courses.splice(index, 1);
 		}
         res.json(courses);
+    })
+    router.post('/courses', (req, res, next) => {
+			cource = req.body,
+			courses = server.db.getState().courses;
+		if(cource) {
+            let max = 0;
+            const arr = (courses).slice(0);
+            arr.forEach( item  => {
+                if (!max) {
+                    max = Number(item.id);
+                } else {
+                    max = max < Number(item.id) ? Number(item.id) : max;
+                }
+            });
+            cource.id = max;
+            courses = courses.unshift(cource);
+		}
+        res.json(courses);
 	})
-
+    router.patch('/courses', (req, res, next) => {
+        cource = req.body,
+        courses = server.db.getState().courses;
+    if(cource) {
+        index = courses.findIndex(value => value.id == Number(cource.id))
+        courses = courses.splice(index, 1, cource);
+    }
+    res.json(courses);
+})
 	
 	return router;
 };

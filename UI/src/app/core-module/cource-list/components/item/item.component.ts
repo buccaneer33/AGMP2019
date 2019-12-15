@@ -28,7 +28,7 @@ export class ItemComponent implements OnInit, OnDestroy {
         this.subscription = this.activateRoute.params.subscribe( params => {
             this.id = params['id'];
             this.popupTitle = this.id ? 'Edit cource' : 'Create cource';
-            this.setPopupData(this.id && this.courceService.getCourceById(this.id));
+            this.setPopupData(this.courceService.getCource(this.id));
         });
     }
 
@@ -51,7 +51,7 @@ export class ItemComponent implements OnInit, OnDestroy {
     }
 
     public clickOk(): void {
-        this.courceService.updateCource(this.popupData);
+        this.courceService.returnCource(this.popupData);
         this.router.navigate(['/list']);
     }
     public clickCancel(): void {

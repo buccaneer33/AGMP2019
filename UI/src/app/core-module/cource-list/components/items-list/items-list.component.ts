@@ -21,11 +21,8 @@ export class ItemsListComponent implements OnInit {
 
     ngOnInit() {
         this.courceList = this.courceService.getCourceList();
-        // console.log(this.courceList);
     }
-    getList() {
 
-    }
     editItem(event: CourceInterface): void {
         this.modalsService.showPopup(
             {
@@ -37,7 +34,7 @@ export class ItemsListComponent implements OnInit {
                 popupData: event
             }).subscribe( result => {
                 if (result.status) {
-                    this.courceService.updateCource(result.data);
+                    // this.courceService.updateCource(result.data);
                     this.courceList = this.courceService.getCourceList(this.filter);
                 }
             });

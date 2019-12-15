@@ -4,7 +4,7 @@ import {
     AuthorInterface
 } from 'src/app/core-module/cource-list/interfaces/CourceInterface';
 
-interface CourceApiInterface {
+export interface CourceApiInterface {
     id: number;
     name: string;
     date: string;
