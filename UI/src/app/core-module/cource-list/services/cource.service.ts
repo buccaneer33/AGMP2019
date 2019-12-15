@@ -4,7 +4,7 @@ import { CourceInterface } from 'src/app/core-module/cource-list/interfaces/Cour
 import { courceListStub } from 'src/assets/dev-stubs/cource-list';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
 // import { SettingsService } from '../../../commons/services/settings.service';
-import { filter } from 'rxjs/operators';
+import { filter, debounceTime, switchMap } from 'rxjs/operators';
 import { ConverterService, CourceApiInterface } from './converter.service';
 import { settings } from 'src/environments/environment';
 
@@ -13,15 +13,32 @@ import { settings } from 'src/environments/environment';
 })
 export class CourceService {
 
+    public filter: BehaviorSubject <string> = new BehaviorSubject(null);
     private courceList: CourceInterface[];
     private courceList$: Subject<any>;
     private courceCount: number = 5;
-    private filter: string;
 
     constructor(
         private http: HttpClient,
         private converter: ConverterService
     ) { }
+
+    filtering() {
+        this.filter.pipe(
+            filter(value => {
+                return value !== null && value.length >= 3;
+            }),
+            debounceTime(settings.debounceTime ? settings.debounceTime : 500 ),
+        )
+        .subscribe(res => {
+            if (!res) {
+                this.loadCourceData();
+            } else {
+                console.log(res);
+                this.loadSortedData(res);
+            }
+        });
+    }
 
     loadCourceData(): void {
         const url = settings.api + settings.cources;
@@ -57,18 +74,29 @@ export class CourceService {
     loadCourceMore(): void {
         this.courceCount += 5;
         this.loadCourceData();
+        this.searchSwitcher();
     }
 
-    getCourceList(search?: string): any {
-        if (search) {
-            this.courceList$ = new Subject();
-            this.loadSortedData(search);
-        } else {
-            this.courceList$ = new Subject();
+    searchSwitcher() {
+        if (this.filter.getValue() === null) {
             this.loadCourceData();
+        } else {
+            this.filtering();
         }
+    }
+
+    getCourceList(): any {
+        this.courceList$ = new Subject();
+        this.loadCourceData();
+        this.filtering();
         return this.courceList$.asObservable().pipe(filter(data => data !== null));
     }
+
+    getCource(id: number): CourceInterface {
+       return (this.courceList.filter(item => item.id === Number(id)))[0];
+    }
+
+    /* back manipulations */
 
     createCource(item: CourceInterface) {
         const url = settings.api + settings.cources;
@@ -100,9 +128,6 @@ export class CourceService {
             },
             error => {});
     }
-    getCource(id: number): CourceInterface {
-       return (this.courceList.filter(item => item.id === Number(id)))[0];
-    }
 
     returnCource(item: CourceInterface) {
         if (!!item.id) {
@@ -123,5 +148,4 @@ export class CourceService {
             },
             error => {});
     }
-
 }

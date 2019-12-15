@@ -12,7 +12,7 @@ import { ModalsServiceService } from 'src/app/modals/services/modals-service.ser
 export class ItemsListComponent implements OnInit {
 
     public courceList: CourceInterface[];
-    private filter: string;
+   // private filter: string;
 
     constructor(
         private courceService: CourceService,
@@ -35,7 +35,7 @@ export class ItemsListComponent implements OnInit {
             }).subscribe( result => {
                 if (result.status) {
                     // this.courceService.updateCource(result.data);
-                    this.courceList = this.courceService.getCourceList(this.filter);
+                    this.courceList = this.courceService.getCourceList();
                 }
             });
     }
@@ -51,7 +51,7 @@ export class ItemsListComponent implements OnInit {
             }).subscribe( result => {
                 if (result.status) {
                     this.courceService.removeCource(event.id);
-                    this.courceList = this.courceService.getCourceList(this.filter);
+                    this.courceList = this.courceService.getCourceList();
                 }
             });
     }
@@ -67,12 +67,13 @@ export class ItemsListComponent implements OnInit {
             }).subscribe( result => {
                 if (result.status) {
                     this.courceService.createCource(result.data);
-                    this.courceList = this.courceService.getCourceList(this.filter);
+                    this.courceList = this.courceService.getCourceList();
                 }
             });
     }
-    searchRes(event: string): void {
+   /* searchRes(event: string): void {
+        console.log(event);
         this.filter = event;
         this.courceList = this.courceService.getCourceList(event);
-    }
+    }*/
 }

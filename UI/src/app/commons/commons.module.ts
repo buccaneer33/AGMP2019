@@ -7,13 +7,15 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { LogoComponent } from './components/logo/logo.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 
 const COMPONENTS = [
     BreadcrumpsComponent,
     CopyRightsComponent,
     LoginFormComponent,
     LogoComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    LoadingOverlayComponent,
   ];
 
 @NgModule({

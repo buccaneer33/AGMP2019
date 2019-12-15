@@ -3,6 +3,8 @@ import { ModalsServiceService } from 'src/app/modals/services/modals-service.ser
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { settings } from 'src/environments/environment';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -10,6 +12,8 @@ import { settings } from 'src/environments/environment';
 export class AutorisationService {
 
     private userLogin: string;
+    private userLogin$: BehaviorSubject<string> = new BehaviorSubject(null);
+    private token$: BehaviorSubject<string> = new BehaviorSubject(null);
 
     constructor(
         private modalsService: ModalsServiceService,
@@ -20,13 +24,14 @@ export class AutorisationService {
    isAutificated(): boolean {
         return !!localStorage.getItem('token');
     }
-    getToken() {
-        if (this.isAutificated()) {
-            return localStorage.getItem('token');
-        }
+    getToken():  Observable<string> {
+        this.token$.next(localStorage.getItem('token'));
+        return this.token$.asObservable().pipe(filter(data => data !== null));
     }
-    getUserInfo(): string {
-        return localStorage.getItem('userName');
+    getUserInfo(): Observable<string> {
+        // return localStorage.getItem('userName');
+        this.userLogin$.next(localStorage.getItem('userName'));
+        return this.userLogin$.asObservable().pipe(filter(data => data !== null));
     }
 
     login(loginStr: string, passwordStr: string): void {
@@ -43,6 +48,7 @@ export class AutorisationService {
                     localStorage.setItem('token', (user as any).fakeToken);
                     this.userLogin = (user as any).name.first + ' ' + (user as any).name.last;
                     localStorage.setItem('userName', this.userLogin);
+                    this.userLogin$.next(this.userLogin);
                     this.router.navigate(['/list']);
                 });
             },

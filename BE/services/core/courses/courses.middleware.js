@@ -96,6 +96,7 @@ module.exports = (server) => {
         courses = server.db.getState().courses;
     if(cource) {
         index = courses.findIndex(value => value.id == Number(cource.id))
+
         courses = courses.splice(index, 1, cource);
     }
     res.json(courses);
