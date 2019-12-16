@@ -29,7 +29,6 @@ export class AutorisationService {
         return this.token$.asObservable().pipe(filter(data => data !== null));
     }
     getUserInfo(): Observable<string> {
-        // return localStorage.getItem('userName');
         this.userLogin$.next(localStorage.getItem('userName'));
         return this.userLogin$.asObservable().pipe(filter(data => data !== null));
     }
@@ -48,7 +47,6 @@ export class AutorisationService {
                     localStorage.setItem('token', (user as any).fakeToken);
                     this.userLogin = (user as any).name.first + ' ' + (user as any).name.last;
                     localStorage.setItem('userName', this.userLogin);
-                    this.userLogin$.next(this.userLogin);
                     this.router.navigate(['/list']);
                 });
             },

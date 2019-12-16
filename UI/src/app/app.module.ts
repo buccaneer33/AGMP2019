@@ -33,11 +33,11 @@ import {
             useClass: AuthInterceptor,
             multi: true,
         },
-        /*CourceService, {
+        CourceService, {
             provide: HTTP_INTERCEPTORS,
             useClass: HttpRequestOverlayInterceptor,
             multi: true,
-        }*/
+        }
     ],
   bootstrap: [AppComponent]
 })

@@ -11,8 +11,7 @@ import { ModalsServiceService } from 'src/app/modals/services/modals-service.ser
 })
 export class ItemsListComponent implements OnInit {
 
-    public courceList: CourceInterface[];
-   // private filter: string;
+    public courceList;
 
     constructor(
         private courceService: CourceService,
@@ -23,22 +22,6 @@ export class ItemsListComponent implements OnInit {
         this.courceList = this.courceService.getCourceList();
     }
 
-    editItem(event: CourceInterface): void {
-        this.modalsService.showPopup(
-            {
-                displayComponent: 'edit-popup',
-                buttons: {
-                    ok: true,
-                    cancel: true
-                },
-                popupData: event
-            }).subscribe( result => {
-                if (result.status) {
-                    // this.courceService.updateCource(result.data);
-                    this.courceList = this.courceService.getCourceList();
-                }
-            });
-    }
     deleteItem(event: CourceInterface): void {
         this.modalsService.showPopup(
             {
@@ -51,29 +34,7 @@ export class ItemsListComponent implements OnInit {
             }).subscribe( result => {
                 if (result.status) {
                     this.courceService.removeCource(event.id);
-                    this.courceList = this.courceService.getCourceList();
                 }
             });
     }
-    addItem() {
-        this.modalsService.showPopup(
-            {
-                displayComponent: 'edit-popup',
-                buttons: {
-                    ok: true,
-                    cancel: true
-                },
-                popupData: ''
-            }).subscribe( result => {
-                if (result.status) {
-                    this.courceService.createCource(result.data);
-                    this.courceList = this.courceService.getCourceList();
-                }
-            });
-    }
-   /* searchRes(event: string): void {
-        console.log(event);
-        this.filter = event;
-        this.courceList = this.courceService.getCourceList(event);
-    }*/
 }
