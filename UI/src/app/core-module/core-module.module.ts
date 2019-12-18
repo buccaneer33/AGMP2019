@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CommonsModule } from '../commons/commons.module';
 import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from '../app-routing.module';
 
 // COMPONENTS
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -17,9 +16,9 @@ import { CourceDateDirective } from './cource-list/directives/cource-date.direct
 
 // PIPES
 import { HoursPipe } from './cource-list/pipes/hours.pipe';
-import { OrderByPipe } from './cource-list/pipes/order-by.pipe';
 import { ItemComponent } from './cource-list/components/item/item.component';
 import { ListComponent } from './cource-list/components/list/list.component';
+import {RouterModule} from '@angular/router';
 
 
 const COMPONENTS = [
@@ -32,7 +31,6 @@ const COMPONENTS = [
   ];
 const PIPES = [
     HoursPipe,
-    OrderByPipe
 ];
 
 @NgModule({
@@ -47,7 +45,7 @@ const PIPES = [
     CommonModule,
     FormsModule,
     CommonsModule,
-    AppRoutingModule
+      RouterModule,
   ],
   exports: [
     ...COMPONENTS,

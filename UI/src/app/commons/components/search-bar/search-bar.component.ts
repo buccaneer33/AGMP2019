@@ -1,22 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import { CourceService } from '../../../core-module/cource-list/services/cource.service';
+import {Subject, Subscription} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
+import {CourceInterface} from '../../../core-module/cource-list/interfaces/CourceInterface';
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss']
 })
-export class SearchBarComponent implements OnInit {
+export class SearchBarComponent implements OnInit, OnDestroy {
+
+    debouncer: Subject<void> = new Subject<void>();
 
     public searchString: string;
 
-    onSearchChange(searchValue: string): void {
-        this.courceService.filter.next(searchValue);
-    }
+    private sub: Subscription;
 
-    constructor(private courceService: CourceService) { }
+    @Output() search: EventEmitter<string> = new EventEmitter<string>();
+
+    constructor() { }
 
     ngOnInit() {
+        this.sub = this.debouncer
+            .pipe(debounceTime(500))
+            .subscribe(
+                () => this.search.emit(this.searchString)
+            )
+    }
 
+    ngOnDestroy(): void {
+        if (this.sub) {
+            this.sub.unsubscribe();
+        }
     }
 }

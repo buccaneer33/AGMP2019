@@ -26,10 +26,9 @@ export class AuthInterceptor implements HttpInterceptor {
             newHeaders['Content-Type'] = 'application/json';
         }
 
-        if (this.auth.isAutificated()) {
-            this.auth.getToken().subscribe(res => {
-                newHeaders['token'] = res;
-            });
+        if (this.auth.isAutificated()
+            && !req.headers.get('Authorization')) {
+            newHeaders['Authorization'] = this.auth.getToken();
         }
 
         if (Object.keys(newHeaders).length) {
@@ -37,17 +36,6 @@ export class AuthInterceptor implements HttpInterceptor {
             setHeaders: newHeaders
         });
 
-
-        return next.handle(req).pipe(tap(
-            event => {
-                if (event instanceof HttpResponse)
-                    console.log('Server response');
-            },
-            err => {
-                if ( err instanceof HttpErrorResponse ) {
-                    if (err.status === 401) console.log('Unauthorized');
-                }
-            })
-        );
+        return next.handle(req);
     }}
 }

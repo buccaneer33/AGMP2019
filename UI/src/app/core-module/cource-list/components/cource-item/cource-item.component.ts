@@ -5,7 +5,7 @@ import {
     Output,
     EventEmitter, ChangeDetectionStrategy
 } from '@angular/core';
-import { CourceInterface } from 'src/app/core-module/cource-list/interfaces/CourceInterface';
+import {Cource} from '../../models/cource';
 
 @Component({
     selector: 'app-cource-item',
@@ -14,20 +14,12 @@ import { CourceInterface } from 'src/app/core-module/cource-list/interfaces/Cour
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourceItemComponent implements OnInit {
-
-@Input() courceItem: CourceInterface;
-@Output() chooseDelete: EventEmitter<CourceInterface> = new EventEmitter<CourceInterface>();
-@Output() chooseEdit: EventEmitter<CourceInterface> = new EventEmitter<CourceInterface>();
-
-    public newCource: boolean;
-
-    constructor() { }
+    @Input() courceItem: Cource;
+    @Output() chooseDelete: EventEmitter<Cource> = new EventEmitter<Cource>();
 
     ngOnInit() {
     }
-    editItem() {
-        this.chooseEdit.emit(this.courceItem);
-    }
+
     deleteItem() {
         this.chooseDelete.emit(this.courceItem);
     }
