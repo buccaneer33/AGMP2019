@@ -36,7 +36,7 @@ export class LoginPageComponent implements OnInit {
                         buttons: {
                             ok: true
                         },
-                        popupData: error + ''
+                        popupData: error.error + ''
                     });
                 }
             );

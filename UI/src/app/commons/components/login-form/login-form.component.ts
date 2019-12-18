@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AutorisationService } from 'src/app/commons/services/autorisation.service';
 import { Router } from '@angular/router';
 import {ModalsServiceService} from '../../../modals/services/modals-service.service';
+import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-login-form',
@@ -9,12 +11,18 @@ import {ModalsServiceService} from '../../../modals/services/modals-service.serv
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
+    username: Observable<string>;
 
     constructor(
         public autorisation: AutorisationService,
         private router: Router,
         private modalsService: ModalsServiceService
-    ) { }
+    ) {
+        this.username = this.autorisation.getUserInfo()
+            .pipe(
+                map(user => user.name.firstName + ' ' + user.name.lastName)
+            );
+    }
 
     ngOnInit() {
     }

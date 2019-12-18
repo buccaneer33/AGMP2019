@@ -30,13 +30,6 @@ export class AutorisationService {
             .post<User>(environment.api + 'auth/userInfo', {token: this.token});
     }
 
-    getUserFullName(): Observable<string> {
-        return this.getUserInfo()
-            .pipe(
-                map(user => user.name.firstName + ' ' + user.name.lastName)
-            );
-    }
-
     login(loginStr: string, passwordStr: string): Observable<void> {
         const authData = {
             login: loginStr,

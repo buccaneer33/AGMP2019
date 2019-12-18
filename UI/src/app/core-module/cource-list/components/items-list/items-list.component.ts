@@ -23,13 +23,13 @@ export class ItemsListComponent implements OnInit {
         this.refresh();
     }
 
-    private showError(error: string) {
+    private showError(error: any) {
         this.modalsService.showPopup({
             displayComponent: 'confirm-popup',
             buttons: {
                 ok: true
             },
-            popupData: error + '',
+            popupData: error.error + '',
         });
     }
 
