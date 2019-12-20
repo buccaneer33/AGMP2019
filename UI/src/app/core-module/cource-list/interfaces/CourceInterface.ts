@@ -5,5 +5,9 @@ export interface CourceInterface {
     duration: string | number;
     topRated: boolean;
     description: string;
-    author: string;
+    author: AuthorInterface[];
+}
+export interface AuthorInterface {
+    id: number;
+    name: string;
 }

@@ -14,7 +14,7 @@
             (chooseDelete)="deleteItem($event)"
             (chooseEdit)="editItem($event)">
         </app-cource-item>
-        <div class="items-list__load-more">
+        <div (click)="courceService.loadCourceMore()" class="items-list__load-more">
             <a href="#">load more</a>
         </div>
     </div>

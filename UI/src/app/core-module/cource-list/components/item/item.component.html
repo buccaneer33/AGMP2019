@@ -53,7 +53,7 @@
             <input class="item__input"
                 type="text"
                 placeholder="Ented author"
-                [(ngModel)]="popupData.author"/>
+                [(ngModel)]="popupData.author[0]"/>
         </div>
     </div>
 </div>
@@ -65,8 +65,7 @@
         !popupData.title ||
         !popupData.description ||
         !popupData.crationDate ||
-        !popupData.duration ||
-        !popupData.author
+        !popupData.duration
         ">ok
     </button>
     <button

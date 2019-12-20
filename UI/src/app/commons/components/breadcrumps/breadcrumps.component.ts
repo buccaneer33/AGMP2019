@@ -58,7 +58,7 @@ export class BreadcrumpsComponent implements OnInit {
             url: nextUrl,
         };
         if (Number(breadcrumb.label)) {
-            breadcrumb.label = (this.courceService.getCourceById(Number(breadcrumb.label))).title;
+            breadcrumb.label = (this.courceService.getCource(Number(breadcrumb.label))).title;
         }
 
         const newBreadcrumbs = breadcrumb.label ?

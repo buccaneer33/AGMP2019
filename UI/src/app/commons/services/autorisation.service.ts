@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ModalsServiceService } from 'src/app/modals/services/modals-service.service';
 import { Router } from '@angular/router';
-import { SettingsService } from '../../commons/services/settings.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { settings } from 'src/environments/environment';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -11,52 +12,53 @@ import { map } from 'rxjs/operators';
 export class AutorisationService {
 
     private userLogin: string;
-    private userPassword: string;
+    private userLogin$: BehaviorSubject<string> = new BehaviorSubject(null);
+    private token$: BehaviorSubject<string> = new BehaviorSubject(null);
 
     constructor(
         private modalsService: ModalsServiceService,
         private router: Router,
-        private settings: SettingsService,
         private http: HttpClient,
     ) {}
 
    isAutificated(): boolean {
         return !!localStorage.getItem('token');
     }
-    getToken() {
-        if (this.isAutificated()) {
-            return localStorage.getItem('token');
-        }
+    getToken():  Observable<string> {
+        this.token$.next(localStorage.getItem('token'));
+        return this.token$.asObservable().pipe(filter(data => data !== null));
+    }
+    getUserInfo(): Observable<string> {
+        this.userLogin$.next(localStorage.getItem('userName'));
+        return this.userLogin$.asObservable().pipe(filter(data => data !== null));
     }
 
     login(loginStr: string, passwordStr: string): void {
-        this.settings.getSettings$().subscribe(settings => {
-            const authUrl = settings.api + settings.login;
-            const authData = {
-                login: loginStr,
-                password: passwordStr
-            };
-            this.http.post(authUrl, authData).subscribe(
-                res => {
-                    const userUrl = settings.api + settings.userInfo;
-                    const body = { token: (res as any).token };
-                    this.http.post(userUrl, body).subscribe(user => {
-                        localStorage.setItem('token', (user as any).fakeToken);
-                        this.userLogin = (user as any).name.first + ' ' + (user as any).name.last;
-                    });
+        const authUrl = settings.api + settings.login;
+        const authData = {
+            login: loginStr,
+            password: passwordStr
+        };
+        this.http.post(authUrl, authData).subscribe(
+            res => {
+                const userUrl  = settings.api + settings.userInfo;
+                const body = { token: (res as any).token };
+                this.http.post(userUrl, body).subscribe(user => {
+                    localStorage.setItem('token', (user as any).fakeToken);
+                    this.userLogin = (user as any).name.first + ' ' + (user as any).name.last;
+                    localStorage.setItem('userName', this.userLogin);
                     this.router.navigate(['/list']);
-                },
-                error => {
-                    console.log(error);
-                    this.modalsService.showPopup({
-                        displayComponent: 'confirm-popup',
-                        buttons: {
-                            ok: true
-                        },
-                        popupData: error.error
-                        });
                 });
-        });
+            },
+            error => {
+                this.modalsService.showPopup({
+                    displayComponent: 'confirm-popup',
+                    buttons: {
+                        ok: true
+                    },
+                    popupData: error.error
+                    });
+            });
     }
 
     logout(): void {
@@ -70,15 +72,10 @@ export class AutorisationService {
             }).subscribe( result => {
                 if (result.status) {
                     this.userLogin = null;
-                    this.userPassword = null;
-                    console.log('userLogin ' + localStorage.getItem('userLogin'));
-                    localStorage.removeItem('userLogin');
+                    localStorage.removeItem('userName');
+                    localStorage.removeItem('token');
                     this.router.navigate(['/login']);
                 }
             });
-    }
-
-    get userInfo(): string {
-        return this.userLogin;
     }
 }

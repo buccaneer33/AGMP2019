@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CourceService } from '../../../core-module/cource-list/services/cource.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -7,16 +8,15 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SearchBarComponent implements OnInit {
 
-    @Output() searchRes: EventEmitter<number|string> = new EventEmitter<number|string>();
-
     public searchString: string;
 
-    searchClick() {
-        this.searchRes.emit(this.searchString);
+    onSearchChange(searchValue: string): void {
+        this.courceService.filter.next(searchValue);
     }
 
-    constructor() { }
+    constructor(private courceService: CourceService) { }
 
     ngOnInit() {
+
     }
 }

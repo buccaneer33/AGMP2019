@@ -10,6 +10,7 @@ import {
 } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { AutorisationService } from 'src/app/commons/services/autorisation.service';
+import { async } from '@angular/core/testing';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -26,7 +27,9 @@ export class AuthInterceptor implements HttpInterceptor {
         }
 
         if (this.auth.isAutificated()) {
-            newHeaders['token'] = this.auth.getToken();
+            this.auth.getToken().subscribe(res => {
+                newHeaders['token'] = res;
+            });
         }
 
         if (Object.keys(newHeaders).length) {
