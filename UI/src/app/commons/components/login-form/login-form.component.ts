@@ -1,6 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AutorisationService } from 'src/app/commons/services/autorisation.service';
 import { Router } from '@angular/router';
+import {ModalsServiceService} from '../../../modals/services/modals-service.service';
+import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-login-form',
@@ -8,18 +11,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
+    username: Observable<string>;
 
     constructor(
         public autorisation: AutorisationService,
-        private router: Router
-    ) { }
+        private router: Router,
+        private modalsService: ModalsServiceService
+    ) {
+        this.username = this.autorisation.getUserInfo()
+            .pipe(
+                map(user => user.name.firstName + ' ' + user.name.lastName)
+            );
+    }
 
     ngOnInit() {
     }
 
     logout() {
-        this.autorisation.logout();
-        this.router.navigate(['/login']);
+        this.modalsService.showPopup({
+            displayComponent: 'confirm-popup',
+            buttons: {
+                ok: true,
+                cancel: true
+            },
+            popupData: 'Do you want logout?'
+        }).subscribe( result => {
+            if (result.status) {
+                this.autorisation.logout();
+                this.router.navigate(['/login']);
+            }
+        });
     }
 
     login() {

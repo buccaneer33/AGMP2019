@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AutorisationService } from 'src/app/commons/services/autorisation.service';
 import { Router } from '@angular/router';
+import {environment} from '../../../environments/environment';
+import {ModalsServiceService} from '../../modals/services/modals-service.service';
 
 @Component({
     selector: 'app-login-page',
@@ -14,13 +16,29 @@ export class LoginPageComponent implements OnInit {
 
     constructor(
         private auth: AutorisationService,
-        private router: Router
+        private router: Router,
+        private modalsService: ModalsServiceService,
     ) { }
 
     ngOnInit() {
     }
 
     clickLogin() {
-        this.auth.login(this.login, this.password);
+        this.auth
+            .login(this.login, this.password)
+            .subscribe(
+                () => {
+                    this.router.navigate(['/list']);
+                },
+                error => {
+                    this.modalsService.showPopup({
+                        displayComponent: 'confirm-popup',
+                        buttons: {
+                            ok: true
+                        },
+                        popupData: error.error + ''
+                    });
+                }
+            );
     }
 }

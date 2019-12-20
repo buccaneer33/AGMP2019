@@ -1,4 +1,4 @@
-<div class="item__header">{{popupTitle}}</div>
+<div class="item__header">{{title}}</div>
 <div class="item__body">
     <div class="item__input-block">
         <div class="item__login-label">Title</div>
@@ -6,16 +6,16 @@
             <input class="item__input"
                 type="text"
                 placeholder="Ented title"
-                [(ngModel)]="popupData.title"/>
+                [(ngModel)]="data.name"/>
         </div>
     </div>
     <div class="item__area-block">
         <div class="item__login-label">Description</div>
         <div class="item__input-block">
-            <textarea class="item__area" 
-                type="text" 
-                placeholder="Ented description" 
-                [(ngModel)]="popupData.description">
+            <textarea class="item__area"
+                type="text"
+                placeholder="Ented description"
+                [(ngModel)]="data.description">
             </textarea>
         </div>
     </div>
@@ -25,7 +25,7 @@
             <input class="item__input item__input--short"
                 type="text"
                 placeholder="Ented date"
-                [(ngModel)]="popupData.crationDate"/>
+                [(ngModel)]="data.date"/>
         </div>
     </div>
     <div class="item__input-block">
@@ -34,8 +34,8 @@
             <input class="item__input item__input--short"
                 type="number"
                 placeholder="Ented duration"
-                [(ngModel)]="popupData.duration"/>
-            <label>{{popupData.duration | hours}}</label>
+                [(ngModel)]="data.length"/>
+            <label>{{data.length | hours}}</label>
         </div>
     </div>
     <div class="item__input-block item__input-block--checkbox">
@@ -44,29 +44,25 @@
             <input class="item__input item__input--short"
                 type="checkbox"
                 placeholder="Ented topRated"
-                [(ngModel)]="popupData.topRated"/>
+                [(ngModel)]="data.isTopRated"/>
         </div>
     </div>
+    <!--
     <div class="item__input-block">
-        <div class="item__login-label">{{popupTitle}}</div>
+        <div class="item__login-label">Author</div>
         <div class="item__input-block">
             <input class="item__input"
                 type="text"
                 placeholder="Ented author"
-                [(ngModel)]="popupData.author[0]"/>
+                [(ngModel)]="data.author[0]"/>
         </div>
     </div>
+    -->
 </div>
 <div class="item__footer">
-    <button 
+    <button
         class="item__button login-popup__button--ok"
-        (click)="clickOk()"
-        [disabled]="
-        !popupData.title ||
-        !popupData.description ||
-        !popupData.crationDate ||
-        !popupData.duration
-        ">ok
+        (click)="clickOk()">ok
     </button>
     <button
         class="item__button login-popup__button--cancel"

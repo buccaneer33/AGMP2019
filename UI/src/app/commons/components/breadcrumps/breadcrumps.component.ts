@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd, Params, PRIMARY_OUTLET } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
-import { CourceService } from 'src/app/core-module/cource-list/services/cource.service';
 
 interface BreadCrumb {
     url: string;
@@ -20,9 +19,7 @@ export class BreadcrumpsComponent implements OnInit {
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private courceService: CourceService
       ) {
-        this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
     }
     ngOnInit() {
         this.router.events.pipe(
@@ -58,7 +55,7 @@ export class BreadcrumpsComponent implements OnInit {
             url: nextUrl,
         };
         if (Number(breadcrumb.label)) {
-            breadcrumb.label = (this.courceService.getCource(Number(breadcrumb.label))).title;
+            breadcrumb.label = breadcrumb.label ? 'Edit' : 'Create';
         }
 
         const newBreadcrumbs = breadcrumb.label ?

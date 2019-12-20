@@ -1,4 +1,6 @@
 export const environment = {
     production: true,
-    settings: 'assets/settings.json'
+
+    api: 'http://localhost:3004/',
+    debounceTime: 500,
 };

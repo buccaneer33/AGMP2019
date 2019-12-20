@@ -1,81 +1,52 @@
 import { Injectable } from '@angular/core';
-import { ModalsServiceService } from 'src/app/modals/services/modals-service.service';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { settings } from 'src/environments/environment';
-import { BehaviorSubject, Subject, Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
+import {map} from 'rxjs/operators';
+import {User} from '../models/user';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AutorisationService {
-
-    private userLogin: string;
-    private userLogin$: BehaviorSubject<string> = new BehaviorSubject(null);
-    private token$: BehaviorSubject<string> = new BehaviorSubject(null);
+    private token: string;
 
     constructor(
-        private modalsService: ModalsServiceService,
-        private router: Router,
         private http: HttpClient,
-    ) {}
-
-   isAutificated(): boolean {
-        return !!localStorage.getItem('token');
-    }
-    getToken():  Observable<string> {
-        this.token$.next(localStorage.getItem('token'));
-        return this.token$.asObservable().pipe(filter(data => data !== null));
-    }
-    getUserInfo(): Observable<string> {
-        this.userLogin$.next(localStorage.getItem('userName'));
-        return this.userLogin$.asObservable().pipe(filter(data => data !== null));
+    ) {
+        this.token = localStorage.getItem('token');
     }
 
-    login(loginStr: string, passwordStr: string): void {
-        const authUrl = settings.api + settings.login;
+    isAutificated(): boolean {
+        return !!this.token;
+    }
+
+    getToken(): string {
+        return this.token;
+    }
+
+    getUserInfo(): Observable<User> {
+        return this.http
+            .post<User>(environment.api + 'auth/userInfo', {token: this.token});
+    }
+
+    login(loginStr: string, passwordStr: string): Observable<void> {
         const authData = {
             login: loginStr,
             password: passwordStr
         };
-        this.http.post(authUrl, authData).subscribe(
-            res => {
-                const userUrl  = settings.api + settings.userInfo;
-                const body = { token: (res as any).token };
-                this.http.post(userUrl, body).subscribe(user => {
-                    localStorage.setItem('token', (user as any).fakeToken);
-                    this.userLogin = (user as any).name.first + ' ' + (user as any).name.last;
-                    localStorage.setItem('userName', this.userLogin);
-                    this.router.navigate(['/list']);
-                });
-            },
-            error => {
-                this.modalsService.showPopup({
-                    displayComponent: 'confirm-popup',
-                    buttons: {
-                        ok: true
-                    },
-                    popupData: error.error
-                    });
-            });
+        return this.http
+            .post<any>(environment.api + 'auth/login', authData)
+            .pipe(
+                map(res => {
+                    this.token = res.token;
+                    localStorage.setItem('token', this.token);
+                })
+            );
     }
 
     logout(): void {
-        this.modalsService.showPopup({
-            displayComponent: 'confirm-popup',
-            buttons: {
-                ok: true,
-                cancel: true
-            },
-            popupData: 'Do you want logout?'
-            }).subscribe( result => {
-                if (result.status) {
-                    this.userLogin = null;
-                    localStorage.removeItem('userName');
-                    localStorage.removeItem('token');
-                    this.router.navigate(['/login']);
-                }
-            });
+        this.token = null;
+        localStorage.removeItem('token');
     }
 }

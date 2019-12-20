@@ -6,8 +6,8 @@ import { CopyRightsComponent } from './components/copy-rights/copy-rights.compon
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { AppRoutingModule } from '../app-routing.module';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
+import {RouterModule} from '@angular/router';
 
 const COMPONENTS = [
     BreadcrumpsComponent,
@@ -25,7 +25,7 @@ const COMPONENTS = [
     imports: [
         CommonModule,
         FormsModule,
-        AppRoutingModule,
+        RouterModule,
     ],
     exports: [
         ...COMPONENTS,
