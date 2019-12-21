@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { CourceService } from '../../../core-module/cource-list/services/cource.service';
 import { Subject, Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import {debounceTime, filter} from 'rxjs/operators';
 import { CourceInterface } from '../../../core-module/cource-list/interfaces/CourceInterface';
 
 @Component({
@@ -13,7 +13,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
     @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
-    debouncer: Subject<void> = new Subject<void>();
+    debouncer: Subject<string> = new Subject<string>();
 
     public searchString: string;
 
@@ -23,9 +23,12 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.sub = this.debouncer
-            .pipe(debounceTime(500))
+            .pipe(
+                debounceTime(500),
+                filter(query => query && query.length >= 3)
+            )
             .subscribe(
-                () => this.search.emit(this.searchString)
+                query => this.search.emit(query)
             );
     }
 

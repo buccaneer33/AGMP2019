@@ -1,3 +1,3 @@
 <div class="search-bar">
-    <input class="search-bar__input" placeholder="Text to search" [(ngModel)]="searchString" (input)="debouncer.next()" />
+    <input class="search-bar__input" placeholder="Text to search" [(ngModel)]="searchString" (input)="debouncer.next(searchString)" />
 </div>
