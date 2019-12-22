@@ -20,7 +20,7 @@ export class LoginFormComponent implements OnInit {
     ) {
         this.username = this.autorisation.getUserInfo()
             .pipe(
-                map(user => user.name.firstName + ' ' + user.name.lastName)
+                map(user => user.name.first + ' ' + user.name.last)
             );
     }
 

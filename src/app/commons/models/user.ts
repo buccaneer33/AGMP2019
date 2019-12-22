@@ -1,9 +1,9 @@
 export interface User {
     id: number,
-    token: string,
+    fakeToken: string,
     name: {
-        firstName: string,
-        lastName: string
+        first: string,
+        last: string
     },
     login: string,
     password: string
