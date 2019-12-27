@@ -3,13 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Cource } from '../models/cource';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { State, Store } from '@ngrx/store';
+import { AppState } from '../../../store/reducers/app.redusers';
+import { GetCourceList, SetCourceList } from '../../../store/actions/cources.actions';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CourceService {
+
     constructor(
         private http: HttpClient,
+        private store: Store<AppState>,
+        private state: State<AppState>,
     ) { }
 
     list(params: {[prop: string]: string} = {}): Observable<Cource[]> {
@@ -27,7 +34,7 @@ export class CourceService {
             .patch<Cource>(environment.api + 'courses/' + model.id, model);
     }
 
-    store(model: Cource): Observable<Cource> {
+    add(model: Cource): Observable<Cource> {
         return this.http
             .post<Cource>(environment.api + 'courses', model);
     }

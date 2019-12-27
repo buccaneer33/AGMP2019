@@ -7,7 +7,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { LogoComponent } from './components/logo/logo.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
-import {RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 const COMPONENTS = [
     BreadcrumpsComponent,

@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CourceService } from 'src/app/core-module/cource-list/services/cource.service';
 import { ModalsServiceService } from 'src/app/modals/services/modals-service.service';
 import { Cource } from '../../models/cource';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../store/reducers/app.redusers';
+import { selectCourceList } from '../../../../store/selectors/cource.selectors';
+import { SetCourceList } from '../../../../store/actions/cources.actions';
 
 @Component({
     selector: 'app-items-list',
@@ -9,6 +13,7 @@ import { Cource } from '../../models/cource';
     styleUrls: ['./items-list.component.scss']
 })
 export class ItemsListComponent implements OnInit {
+    public courceList$  = this.store.select(selectCourceList);
     public courceList: Cource[];
 
     private textFragment: string;
@@ -17,6 +22,7 @@ export class ItemsListComponent implements OnInit {
     constructor(
         private courceService: CourceService,
         private modalsService: ModalsServiceService,
+        private store: Store<AppState>,
     ) { }
 
     ngOnInit() {
@@ -34,12 +40,13 @@ export class ItemsListComponent implements OnInit {
             params.start = 0 + '';
             params.count = this.count + '';
         }
-        this.courceService
-            .list(params)
-            .subscribe(
-                items => this.courceList = items,
-                error => this.showError(error)
-            );
+        this.courceService.list(params).subscribe(
+            list => {
+                this.courceList = list;
+                this.store.dispatch(new SetCourceList(list));
+            },
+            error => this.showError(error)
+        );
     }
 
     deleteItem(model: Cource): void {

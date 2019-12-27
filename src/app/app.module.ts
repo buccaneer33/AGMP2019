@@ -7,8 +7,13 @@ import { ModalsModule } from './modals/modals.module';
 import { CoreModuleModule } from './core-module/core-module.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AutorisationService } from './commons/services/autorisation.service';
-import { AuthInterceptor } from './commons/interceptors/AuthInterceptor';
+import { AutorisationService } from './auth/services/autorisation.service';
+import { AuthInterceptor } from './auth/interceptors/AuthInterceptor';
+import { AuthModule } from './auth/auth.module';
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './store/reducers/app.redusers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [
@@ -22,6 +27,9 @@ import { AuthInterceptor } from './commons/interceptors/AuthInterceptor';
         ModalsModule,
         CoreModuleModule,
         AppRoutingModule,
+        AuthModule,
+        StoreModule.forRoot( appReducers ),
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
     ],
     providers: [
         AutorisationService, {
