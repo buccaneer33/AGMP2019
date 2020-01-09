@@ -1,4 +1,3 @@
-import { CourceInterface } from 'src/app/core-module/cource-list/interfaces/CourceInterface';
 export interface PopupDisplayDataInterface {
     displayComponent?: any;
     buttons?: {

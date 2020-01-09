@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AutorisationService } from 'src/app/commons/services/autorisation.service';
+import { AutorisationService } from 'src/app/auth/services/autorisation.service';
 import { Router } from '@angular/router';
-import {environment} from '../../../environments/environment';
-import {ModalsServiceService} from '../../modals/services/modals-service.service';
+import { ModalsServiceService } from '../../../modals/services/modals-service.service';
 
 @Component({
     selector: 'app-login-page',

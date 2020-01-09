@@ -69,7 +69,7 @@ export class ItemComponent implements OnInit, OnDestroy {
         if (this.id) {
             obs = this.courceService.update(this.data);
         } else {
-            obs = this.courceService.store(this.data);
+            obs = this.courceService.add(this.data);
         }
         obs.subscribe(
             () => this.router.navigate(['/list']),

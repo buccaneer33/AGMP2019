@@ -1,8 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { CourceService } from '../../../core-module/cource-list/services/cource.service';
 import { Subject, Subscription } from 'rxjs';
-import {debounceTime, filter} from 'rxjs/operators';
-import { CourceInterface } from '../../../core-module/cource-list/interfaces/CourceInterface';
+import { debounceTime, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-bar',

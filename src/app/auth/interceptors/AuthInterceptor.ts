@@ -5,20 +5,20 @@ import {
     HttpInterceptor,
     HttpHandler,
     HttpRequest,
-    HttpResponse,
-    HttpErrorResponse
 } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
-import { AutorisationService } from 'src/app/commons/services/autorisation.service';
-import { async } from '@angular/core/testing';
+import { State } from '@ngrx/store';
+import { AppState } from '../../store/reducers/app.redusers';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private auth: AutorisationService) {}
+    constructor(
+        private state: State<AppState>
+    ) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const newHeaders = {};
+        const token = this.state.getValue().auth.token;
 
         if (req.body
             && (req.method === 'POST' || req.method === 'PUT' || req.method === 'PATCH')
@@ -26,16 +26,15 @@ export class AuthInterceptor implements HttpInterceptor {
             newHeaders['Content-Type'] = 'application/json';
         }
 
-        if (this.auth.isAutificated()
-            && !req.headers.get('Authorization')) {
-            newHeaders['Authorization'] = this.auth.getToken();
+        if (token && !req.headers.get('Authorization')) {
+            newHeaders['Authorization'] = token;
         }
 
         if (Object.keys(newHeaders).length) {
             req = req.clone({
-            setHeaders: newHeaders
-        });
-
-        return next.handle(req);
-    }}
+                setHeaders: newHeaders
+            });
+            return next.handle(req);
+        }
+    }
 }

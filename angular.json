@@ -136,5 +136,8 @@
       }
     }
   },
-  "defaultProject": "AGMP2019"
+  "defaultProject": "AGMP2019",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

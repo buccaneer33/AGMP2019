@@ -1,13 +1,12 @@
-export interface CourceInterface {
-    id: string | number;
-    title: string;
-    crationDate: string;
-    duration: string | number;
-    topRated: boolean;
-    description: string;
-    author: AuthorInterface[];
-}
-export interface AuthorInterface {
+export interface Cource {
     id: number;
     name: string;
+    date: string;
+    length: number;
+    description: string;
+    authors: {
+        id: number;
+        name: string;
+    };
+    isTopRated: boolean;
 }

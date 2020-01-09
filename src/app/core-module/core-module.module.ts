@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CommonsModule } from '../commons/commons.module';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 // COMPONENTS
-import { LoginPageComponent } from './login-page/login-page.component';
 import { FooterComponent } from './page-markup/components/footer/footer.component';
 import { HeaderComponent } from './page-markup/components/header/header.component';
 import { CourceItemComponent } from './cource-list/components/cource-item/cource-item.component';
@@ -18,11 +18,10 @@ import { CourceDateDirective } from './cource-list/directives/cource-date.direct
 import { HoursPipe } from './cource-list/pipes/hours.pipe';
 import { ItemComponent } from './cource-list/components/item/item.component';
 import { ListComponent } from './cource-list/components/list/list.component';
-import {RouterModule} from '@angular/router';
+
 
 
 const COMPONENTS = [
-    LoginPageComponent,
     FooterComponent,
     HeaderComponent,
     CourceItemComponent,

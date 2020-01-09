@@ -7,7 +7,7 @@
     </div>
     <div *ngIf="courceList" class="items-list">
         <app-cource-item
-            *ngFor="let courceItem of courceList"
+            *ngFor="let courceItem of courceList$ | async"
             [courceItem]="courceItem"
             (chooseDelete)="deleteItem($event)">
         </app-cource-item>
