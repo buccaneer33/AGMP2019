@@ -5,13 +5,37 @@
             <div class="login-form__login-block">
                 <div class="login-form__login-label">E-mail</div>
                 <div class="login-form__input-block">
-                    <input class="login-form__input" type="text" placeholder="Enter e-mail" [(ngModel)]="login"/>
+                    <input 
+                        class="login-form__input"
+                        type="text"
+                        placeholder="Enter e-mail"
+                        [(ngModel)]="login"
+                        name="loginModel"
+                        #loginModel="ngModel"
+                        required
+                        pattern="^[A-Za-z0-9_-]+$"
+                        />
+                        <div [hidden]="loginModel.valid || loginModel.untouched" class="alert">
+                            Не указан login
+                        </div>
                 </div>
             </div>
             <div class="login-form__password-block">
                 <div class="login-form__login-label">Password</div>
                 <div class="login-form__input-block">
-                    <input class="login-form__input" type="password" placeholder="Ented password" [(ngModel)]="password"/>
+                    <input
+                        class="login-form__input"
+                        type="password"
+                        placeholder="Ented password"
+                        [(ngModel)]="password"
+                        name="passwordModel"
+                        #passwordModel="ngModel"
+                        required
+                        pattern="^[A-Za-z0-9_-]+$"
+                        />
+                        <div [hidden]="passwordModel.valid || passwordModel.untouched" class="alert">
+                            Не указан password
+                        </div>
                 </div>
             </div>
         </div>
@@ -19,7 +43,12 @@
             <div class="login-form__forgot-block">
                 <a href="#" class="login-form__forgot-link">Forgot password?</a>
             </div>
-            <button class="login-form__button login-form__button--ok" (click)="clickLogin()" [disabled]="!login || !password">Login</button>
+            <button 
+                class="login-form__button login-form__button--ok"
+                (click)="clickLogin()"
+                [disabled]="!loginModel.valid || !passwordModel.valid"
+                >Login
+            </button>
         </div>
     </div>
 </div>
