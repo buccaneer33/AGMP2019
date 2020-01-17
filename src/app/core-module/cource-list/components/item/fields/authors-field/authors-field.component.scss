@@ -1,0 +1,18 @@
+@import '../../item.component.scss';
+
+.authors-field {
+    &__dropdown {
+        list-style-type: none;
+    }
+
+    &__dropdown-item {
+        min-width: inherit;
+    }
+}
+.authors-list{
+    list-style: none;
+
+    &__item{
+        float: right;
+    }
+}

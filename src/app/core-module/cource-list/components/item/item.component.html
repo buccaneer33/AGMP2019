@@ -1,71 +1,120 @@
-<div class="item__header">{{title}}</div>
-<div *ngIf="data" class="item__body">
-    <div class="item__input-block">
-        <div class="item__login-label">Title</div>
+<form [formGroup]="form">
+    <div class="item__header">{{title}}</div>
+    <div *ngIf="data" class="item__body">
         <div class="item__input-block">
-            <input class="item__input"
-                type="text"
-                placeholder="Ented title"
-                [(ngModel)]="data.name"/>
+            <div class="item__login-label">Title</div>
+            <div class="item__input-block">
+                <span class="item__error-block" *ngIf="form.controls.name.invalid && form.controls.name.touched">
+                    <span *ngIf="form.controls.name.errors.required">This field is required</span>
+                    <span *ngIf="form.controls.name.errors.maxlength">This field max length is 50</span>
+                </span>
+                <input class="item__input"
+                    [ngClass]="{'item__input--invalid': form.controls.name.invalid && form.controls.name.touched}"
+                    type="text"
+                    placeholder="Ented title"
+                    formControlName="name"
+                    name="name"
+                />
+            </div>
         </div>
-    </div>
-    <div class="item__area-block">
-        <div class="item__login-label">Description</div>
-        <div class="item__input-block">
-            <textarea class="item__area"
-                type="text"
-                placeholder="Ented description"
-                [(ngModel)]="data.description">
-            </textarea>
+        <div class="item__area-block">
+            <div class="item__login-label">Description</div>
+            <div class="item__input-block">
+                <span class="item__error-block" *ngIf="form.controls.description.invalid && form.controls.description.touched">
+                    <span *ngIf="form.controls.description.errors.required">This field is required</span>
+                    <span *ngIf="form.controls.description.errors.maxlength">This field max length is 500</span>
+                </span>
+                <textarea class="item__area"
+                    [ngClass]="{'item__area--invalid': form.controls.description.invalid && form.controls.description.touched}"
+                    type="text"
+                    placeholder="Ented description"
+                    formControlName="description"
+                    name="description">
+                </textarea>
+            </div>
         </div>
-    </div>
-    <div class="item__input-block">
-        <div class="item__login-label">Date</div>
-        <div class="item__input-block">
-            <input class="item__input item__input--short"
-                type="text"
-                placeholder="Ented date"
-                [(ngModel)]="data.date"/>
+
+        <!--<div class="item__input-block">
+            <div class="item__login-label">Date</div>
+            <div class="item__input-block">
+                <span class="item__error-block" *ngIf="form.controls.date.invalid && form.controls.date.touched">
+                    <span *ngIf="form.controls.date.errors.required">This field is required </span>
+                    <span *ngIf="form.controls.date.errors.notDate">This field must be a date </span>
+                </span>
+                <input class="item__input item__input--short"
+                    [ngClass]="{'item__area--invalid': form.controls.date.invalid && form.controls.date.touched}"
+                    type="text"
+                    placeholder="Ented date"
+                    formControlName="date"
+                    name="date"
+                    />
+            </div>
+        </div>-->
+        <app-date-field 
+            formControlName="date"
+            [control]="form.controls.date"
+            placeholder="Entry date"
+        ></app-date-field >
+
+        <!--<div class="item__input-block">
+            <div class="item__login-label">Duration</div>
+            <div class="item__input-block">
+                <span class="item__error-block" *ngIf="form.controls.length.invalid && form.controls.length.touched">
+                    <span *ngIf="form.controls.length.errors.required">This field is required </span>
+                    <span *ngIf="form.controls.length.errors.notInt">This field must be a integer </span>
+                </span>
+                <div class="item__input-wrapper">
+                    <input class="item__input item__input--short"
+                        [ngClass]="{'item__area--invalid': form.controls.length.invalid && form.controls.length.touched}"
+                        type="text"
+                        placeholder="Ented duration"
+                        formControlName="length"
+                        />
+                    <label *ngIf="form.controls.length.valid">
+                        {{form.controls.length.value | hours}}
+                    </label>
+                </div>
+            </div>
+        </div>-->
+
+        <app-duration-field
+            formControlName="duration"
+            [control]="form.controls.duration"
+            placeholder="Entry duration"
+        ></app-duration-field><!---->
+
+        <div class="item__input-block item__input-block--checkbox">
+            <div class="item__login-label item__login-label--short">Top Rated</div>
+            <div class="item__input-block">
+                <input class="item__input item__input--short"
+                    type="checkbox"
+                    placeholder="Ented topRated"
+                    formControlName="isTopRated"/>
+            </div>
         </div>
+        <!--<div class="item__input-block">
+            <div class="item__login-label">Author</div>
+            <div class="item__input-block">
+                <div *ngFor="let author of form.get('authors').controls; let i = index;">
+                <input class="item__input"
+                    type="text"
+                    placeholder="Ented author"
+                    [formControlName]="i"/>
+                </div>
+            </div>
+        </div>-->
+        <app-authors-field [form]="form"></app-authors-field>
+
     </div>
-    <div class="item__input-block">
-        <div class="item__login-label">Duration</div>
-        <div class="item__input-wrapper">
-            <input class="item__input item__input--short"
-                type="number"
-                placeholder="Ented duration"
-                [(ngModel)]="data.length"/>
-            <label>{{data.length | hours}}</label>
-        </div>
+    <div class="item__footer">
+        <button
+            [disabled]="!form.valid"
+            type="submit"
+            class="item__button login-popup__button--ok">ok
+        </button>
+        <button
+            class="item__button login-popup__button--cancel"
+            (click)="clickCancel()">cancel
+        </button>
     </div>
-    <div class="item__input-block item__input-block--checkbox">
-        <div class="item__login-label item__login-label--short">Top Rated</div>
-        <div class="item__input-block">
-            <input class="item__input item__input--short"
-                type="checkbox"
-                placeholder="Ented topRated"
-                [(ngModel)]="data.isTopRated"/>
-        </div>
-    </div>
-    <!--
-    <div class="item__input-block">
-        <div class="item__login-label">Author</div>
-        <div class="item__input-block">
-            <input class="item__input"
-                type="text"
-                placeholder="Ented author"
-                [(ngModel)]="data.author[0]"/>
-        </div>
-    </div>
-    -->
-</div>
-<div class="item__footer">
-    <button
-        class="item__button login-popup__button--ok"
-        (click)="clickOk()">ok
-    </button>
-    <button
-        class="item__button login-popup__button--cancel"
-        (click)="clickCancel()">cancel
-    </button>
-</div>
+</form><!---->

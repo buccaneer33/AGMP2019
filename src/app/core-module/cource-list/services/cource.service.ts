@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Cource } from '../models/cource';
+import { Author } from '../models/author';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { State, Store } from '@ngrx/store';
 import { AppState } from '../../../store/reducers/app.redusers';
@@ -42,5 +43,10 @@ export class CourceService {
     del(id: number): Observable<void> {
         return this.http
             .delete<void>(environment.api + 'courses/' + id);
+    }
+
+    getAuthors(): Observable<Author[]> {
+        return this.http
+            .get<Author[]>(environment.api + 'authors');
     }
 }

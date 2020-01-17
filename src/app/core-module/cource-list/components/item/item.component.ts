@@ -4,6 +4,8 @@ import { Observable, Subscription } from 'rxjs';
 import { CourceService } from '../../services/cource.service';
 import { Cource } from '../../models/cource';
 import { ModalsServiceService } from '../../../../modals/services/modals-service.service';
+import { CourceForm } from '../../models/CourceForm';
+import { FormArray, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-item',
@@ -15,6 +17,7 @@ export class ItemComponent implements OnInit, OnDestroy {
     public data: Cource;
     private id: number;
     private subscription: Subscription;
+    private form: FormGroup;
 
     constructor(
         private activateRoute: ActivatedRoute,
@@ -26,11 +29,13 @@ export class ItemComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.id = +this.activateRoute.snapshot.paramMap.get('id');
+        this.form = CourceForm.createFormObject();
         if (this.id) {
             this.load();
         } else {
             this.init();
         }
+        // console.log(this.form);
     }
 
     ngOnDestroy(): void {
@@ -39,6 +44,20 @@ export class ItemComponent implements OnInit, OnDestroy {
         }
     }
 
+    updateForm(metadata) {
+        this.form.patchValue({
+            name: metadata.name,
+            date: metadata.date,
+            duration: metadata.length,
+            description: metadata.description,
+            isTopRated: metadata.isTopRated
+        });
+        if (metadata.authors && metadata.authors.length) {
+            for (const author of metadata.authors) {
+                (this.form.controls['authors'] as FormArray).push(new FormControl(author));
+            }
+        }
+    }
     get title(): string {
         return this.id ? 'Edit cource' : 'Create cource';
     }
@@ -47,7 +66,10 @@ export class ItemComponent implements OnInit, OnDestroy {
         this.courceService
             .load(this.id)
             .subscribe(
-                data => this.data = data,
+                (data) => {
+                    this.data = data;
+                    this.updateForm(data);
+                },
                 error => this.showError(error)
             );
     }

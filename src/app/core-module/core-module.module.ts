@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CommonsModule } from '../commons/commons.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 // COMPONENTS
@@ -10,16 +10,24 @@ import { HeaderComponent } from './page-markup/components/header/header.componen
 import { CourceItemComponent } from './cource-list/components/cource-item/cource-item.component';
 import { ItemsListComponent } from './cource-list/components/items-list/items-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ItemComponent } from './cource-list/components/item/item.component';
+import { ListComponent } from './cource-list/components/list/list.component';
+import {
+    DateFieldComponent
+} from './cource-list/components/item/fields/date-field/date-field.component';
+import {
+    AuthorsFieldComponent
+} from './cource-list/components/item/fields/authors-field/authors-field.component';
+import {
+    DurationFieldComponent
+} from './cource-list/components/item/fields/duration-field/duration-field.component';
 
 // DIRECTIVES
 import { CourceDateDirective } from './cource-list/directives/cource-date.directive';
 
 // PIPES
 import { HoursPipe } from './cource-list/pipes/hours.pipe';
-import { ItemComponent } from './cource-list/components/item/item.component';
-import { ListComponent } from './cource-list/components/list/list.component';
-
-
+import { AuthorComponent } from './cource-list/components/item/fields/authors-field/author/author.component';
 
 const COMPONENTS = [
     FooterComponent,
@@ -27,6 +35,11 @@ const COMPONENTS = [
     CourceItemComponent,
     ItemsListComponent,
     NotFoundComponent,
+    ItemComponent,
+    ListComponent,
+    DateFieldComponent,
+    AuthorsFieldComponent,
+    DurationFieldComponent,
   ];
 const PIPES = [
     HoursPipe,
@@ -37,18 +50,19 @@ const PIPES = [
     ...COMPONENTS,
     ...PIPES,
     CourceDateDirective,
-    ItemComponent,
-    ListComponent,
+    AuthorComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     CommonsModule,
-      RouterModule,
+    RouterModule,
+    ReactiveFormsModule
   ],
   exports: [
     ...COMPONENTS,
-    ...PIPES
+    ...PIPES,
+    ReactiveFormsModule
   ]
 })
 export class CoreModuleModule { }

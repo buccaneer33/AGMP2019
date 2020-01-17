@@ -1,0 +1,23 @@
+<div class="item__input-block">
+    <div class="item__login-label">Duration</div>
+    <div class="item__input-block">
+        <span class="item__error-block" *ngIf="control.invalid && control.touched">
+            <span *ngIf="control.errors.required">This field is required </span>
+            <span *ngIf="control.errors.notInt">This field must be a integer </span>
+        </span>
+        <div class="item__input-wrapper">
+            <input class="item__input item__input--short"
+                [ngClass]="{'item__area--invalid': control.invalid && control.touched}"
+                type="text"
+                placeholder="{{ placeholder }}"
+                (input)="writeValue(date.value)"
+                (blur)="onTouched()"
+                [(ngModel)]="value"
+                #date
+            />
+            <label *ngIf="control.valid">
+                {{_value | hours}}
+            </label>
+        </div>
+    </div>
+</div>
