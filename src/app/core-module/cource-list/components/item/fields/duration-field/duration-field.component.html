@@ -10,13 +10,13 @@
                 [ngClass]="{'item__area--invalid': control.invalid && control.touched}"
                 type="text"
                 placeholder="{{ placeholder }}"
-                (input)="writeValue(date.value)"
+                (ngModelChange)="updateValue($event)"
                 (blur)="onTouched()"
-                [(ngModel)]="value"
-                #date
+                [ngModel]="value"
+                #duration
             />
             <label *ngIf="control.valid">
-                {{_value | hours}}
+                {{value | hours}}
             </label>
         </div>
     </div>

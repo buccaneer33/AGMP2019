@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { formatDate } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { CourceService } from '../../services/cource.service';
@@ -6,6 +7,7 @@ import { Cource } from '../../models/cource';
 import { ModalsServiceService } from '../../../../modals/services/modals-service.service';
 import { CourceForm } from '../../models/CourceForm';
 import { FormArray, FormGroup, FormControl } from '@angular/forms';
+
 
 @Component({
     selector: 'app-item',
@@ -35,7 +37,7 @@ export class ItemComponent implements OnInit, OnDestroy {
         } else {
             this.init();
         }
-        // console.log(this.form);
+        console.log(this.form);
     }
 
     ngOnDestroy(): void {
@@ -47,7 +49,7 @@ export class ItemComponent implements OnInit, OnDestroy {
     updateForm(metadata) {
         this.form.patchValue({
             name: metadata.name,
-            date: metadata.date,
+            date: formatDate(metadata.date, 'dd/MM/yyy', 'en-US' ),
             duration: metadata.length,
             description: metadata.description,
             isTopRated: metadata.isTopRated

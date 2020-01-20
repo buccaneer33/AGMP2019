@@ -1,18 +1,17 @@
 <div class="item__input-block">
     <div class="item__login-label">Date</div>
     <div class="item__input-block">
-        <span class="item__error-block" *ngIf="control.invalid && control.touched">
+        <span class="item__error-block" *ngIf="control.invalid">
             <span *ngIf="control.errors.required">This field is required </span>
             <span *ngIf="control.errors.notDate">This field must be a date </span>
         </span>
         <input class="item__input"
-            [ngClass]="{'form__field--invalid': control.invalid && control.touched }"
+            [ngClass]="{'item__area--invalid': control.invalid && control.touched }"
             type="text"
             placeholder="{{ placeholder }}"
-            (input)="writeValue(date.value)"
+            (ngModelChange)="updateValue($event)"
             (blur)="onTouched()"
-            [value]="value"
-            #date
-        />
+            [ngModel]="value"
+            #date/>
     </div>
 </div>

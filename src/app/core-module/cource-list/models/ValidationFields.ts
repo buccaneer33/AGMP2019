@@ -3,7 +3,8 @@ import { AbstractControl } from '@angular/forms';
 export class FieldValidation {
 
     static dateValidation = ( control: AbstractControl ) => {
-            if (!control.value || !((control.value) instanceof Date )) {
+        const v: string = control.value;
+            if (!v || (!(/^\d{2}([./-])\d{2}\1\d{4}$/.test(v)))) {
                 return { notDate: true};
             }
             return null;

@@ -1,15 +1,20 @@
 @import '../../item.component.scss';
 
-.authors-field {
+.authors-list {
+    position: relative;
+
     &__dropdown {
         list-style-type: none;
+        background-color: #ccc;
+        width: 20%;
+        position: absolute;
     }
 
     &__dropdown-item {
-        min-width: inherit;
+        min-width: 100%;
     }
 }
-.authors-list{
+.active-authors{
     list-style: none;
 
     &__item{

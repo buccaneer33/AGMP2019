@@ -10,10 +10,12 @@ export class CourceForm {
                 Validators.required,
                 Validators.maxLength(50)
             ]),
-            date: new FormControl('', [
+            date: new FormControl('',
+            [
                 Validators.required,
                 FieldValidation.dateValidation
-            ]),
+            ]
+            ),
             duration: new FormControl('', [
                 Validators.required,
                 FieldValidation.intValidation
@@ -22,8 +24,8 @@ export class CourceForm {
                 Validators.required,
                 Validators.maxLength(500)
             ]),
-            authors: new FormArray([]),
             isTopRated: new FormControl(''),
+            authors: new FormArray([], Validators.required),
         });
         return form;
     }

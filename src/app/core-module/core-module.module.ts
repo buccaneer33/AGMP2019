@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CommonsModule } from '../commons/commons.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 // COMPONENTS
 import { FooterComponent } from './page-markup/components/footer/footer.component';
@@ -21,13 +22,16 @@ import {
 import {
     DurationFieldComponent
 } from './cource-list/components/item/fields/duration-field/duration-field.component';
+import {
+    AuthorComponent
+} from './cource-list/components/item/fields/authors-field/author/author.component';
 
 // DIRECTIVES
 import { CourceDateDirective } from './cource-list/directives/cource-date.directive';
 
 // PIPES
 import { HoursPipe } from './cource-list/pipes/hours.pipe';
-import { AuthorComponent } from './cource-list/components/item/fields/authors-field/author/author.component';
+
 
 const COMPONENTS = [
     FooterComponent,
@@ -57,7 +61,8 @@ const PIPES = [
     FormsModule,
     CommonsModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule
   ],
   exports: [
     ...COMPONENTS,

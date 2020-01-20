@@ -1,24 +1,18 @@
-<div [formGroup]="form" form class="item__input-block">
+<div class="item__input-block">
     <div class="item__login-label">Author</div>
     <div class="item__input-block">
-        <div>
-        <input class="item__input"
-            type="text"
-            placeholder="Ented author"
-            name="authors"/>
-        <ng-container *ngTemplateOutlet="authorsDropdown"></ng-container>
-        </div>
-        <ul formArrayName="authors" class="authors-list">
-            <li class="authors-list__item" *ngFor="let author of form.get('authors').controls; let i = index;">
-                <app-author  formControlName="{{i}}" (remove)="remove($event)"></app-author>
-            </li>
-        </ul>
+    <ng-select
+        [items]="authors$ | async"
+        [multiple]="true"
+        [closeOnSelect]="false"
+        [searchable]="true"
+        bindLabel="name"
+        placeholder="Select people"
+        [ngModel]="form.get('authors').value"
+        (add)="addUser($event)"
+        (remove)="removeUser($event)"
+        >
+    </ng-select>
+
     </div>
 </div>
-<ng-template #authorsDropdown>
-    <!--<ul class="authors-field__dropdown">
-       <li *ngFor="let author of authors$ | async" class="authors-field__dropdown-item">
-           <button (click)="addAuthor(author)">{{author.name}}</button>
-       </li>
-    </ul>-->
-</ng-template>

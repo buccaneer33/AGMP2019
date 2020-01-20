@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewEncapsulation, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
 import { FormFieldComponent } from '../form-field/form-field.component';
 
 @Component({
