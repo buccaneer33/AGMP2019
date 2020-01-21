@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Injector, Optional, Self } from '@angular/core';
-import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
+import { Input } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
 
 export class FormFieldComponent implements ControlValueAccessor {
 

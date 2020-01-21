@@ -2,15 +2,20 @@
     <div class="item__login-label">Date</div>
     <div class="item__input-block">
         <span class="item__error-block" *ngIf="control.invalid">
-            <span *ngIf="control.errors.required">This field is required </span>
-            <span *ngIf="control.errors.notDate">This field must be a date </span>
+            <span *ngIf="control.errors.required"> This field is required </span>
+            <span *ngIf="control.errors.dateFormat"> Date format must be mm/dd/yyyy </span>
+            <span *ngIf="control.errors.dateInvalid"> Date value invalid </span>
+            <span *ngIf="control.errors.monthInvalid"> Month value invalid </span>
+            <span *ngIf="control.errors.dayInvalid"> Day value invalid </span>
+            <span *ngIf="control.errors.dateYearGreaterThanCurrentYear"> Date year greater than current year </span>
+            <span *ngIf="control.errors.tooOld"> The year too old </span>
         </span>
         <input class="item__input"
             [ngClass]="{'item__area--invalid': control.invalid && control.touched }"
             type="text"
             placeholder="{{ placeholder }}"
             (ngModelChange)="updateValue($event)"
-            (blur)="onTouched()"
+            (blur)="onTouched()" 
             [ngModel]="value"
             #date/>
     </div>

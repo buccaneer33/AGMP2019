@@ -2,7 +2,7 @@
     <div class="item__login-label">Author</div>
     <div class="item__input-block">
         <span class="item__error-block" *ngIf="control.invalid">
-            <span *ngIf="control.errors.noAuthors">No autgors</span>
+            <span *ngIf="control.errors.noAuthors">No authors</span>
         </span>
         <ng-select
             [items]="authors$ | async"

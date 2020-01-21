@@ -1,22 +1,15 @@
 import {
     Component,
     OnInit,
-    Input,
-    EventEmitter,
-    Output,
     ChangeDetectionStrategy,
     forwardRef
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR, FormArray, FormGroup, FormBuilder } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormFieldComponent } from '../form-field/form-field.component';
 import { Author } from '../../../../models/author';
 import { CourceService } from '../../../../services/cource.service';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-
-import { ControlValueAccessor, FormControl, NG_VALIDATORS } from '@angular/forms';
 import { NgSelectConfig } from '@ng-select/ng-select';
-import { cloneDeep } from 'lodash';
 
 @Component({
     selector: 'app-authors-field',

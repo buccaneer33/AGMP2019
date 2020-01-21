@@ -6,9 +6,7 @@ import { CourceService } from '../../services/cource.service';
 import { Cource } from '../../models/cource';
 import { ModalsServiceService } from '../../../../modals/services/modals-service.service';
 import { CourceForm } from '../../models/CourceForm';
-import { FormArray, FormGroup, FormControl } from '@angular/forms';
-import { Author } from '../../models/author';
-
+import { FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-item',
@@ -49,7 +47,7 @@ export class ItemComponent implements OnInit, OnDestroy {
     updateForm(metadata) {
         this.form.patchValue({
             name: metadata.name,
-            date: formatDate(metadata.date, 'dd/MM/yyy', 'en-US' ),
+            date: formatDate(metadata.date, 'MM/dd/yyyy', 'en-US' ),
             duration: metadata.length,
             description: metadata.description,
             isTopRated: metadata.isTopRated,
@@ -66,7 +64,7 @@ export class ItemComponent implements OnInit, OnDestroy {
             .subscribe(
                 (data) => {
                     this.data = data;
-                    this.updateForm(data);
+                    this.updateForm(this.data);
                 },
                 error => this.showError(error)
             );
@@ -82,14 +80,26 @@ export class ItemComponent implements OnInit, OnDestroy {
             authors: null,
             isTopRated: false,
         };
+        this.updateForm(this.data);
     }
 
     public clickOk(): void {
         let obs: Observable<any>;
+        const cource: Cource = {
+            id: this.data.id,
+            name: this.form.get('name').value,
+            date: new Date(
+                formatDate(this.form.get('date').value, 'yyyy-MM-dd', 'en-US')
+            ).toISOString(),
+            length: this.form.get('duration').value,
+            description: this.form.get('description').value,
+            authors: this.form.get('authors').value,
+            isTopRated: this.form.get('isTopRated').value,
+        };
         if (this.id) {
-            obs = this.courceService.update(this.data);
+            obs = this.courceService.update(cource);
         } else {
-            obs = this.courceService.add(this.data);
+            obs = this.courceService.add(cource);
         }
         obs.subscribe(
             () => this.router.navigate(['/list']),
@@ -98,10 +108,6 @@ export class ItemComponent implements OnInit, OnDestroy {
     }
     public clickCancel(): void {
         this.router.navigate(['/list']);
-    }
-
-    public showForm() {
-        console.log(this.form);
     }
 
     private showError(error: any) {
@@ -114,5 +120,4 @@ export class ItemComponent implements OnInit, OnDestroy {
             popupData: 'Error: ' + error.statusText + '',
         });
     }
-
 }
