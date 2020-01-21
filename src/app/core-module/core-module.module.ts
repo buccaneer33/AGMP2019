@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CommonsModule } from '../commons/commons.module';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { I18nModule } from '../i18n/i18n.module';
 
 // COMPONENTS
 import { FooterComponent } from './page-markup/components/footer/footer.component';
@@ -44,7 +45,8 @@ const PIPES = [
     CommonModule,
     FormsModule,
     CommonsModule,
-      RouterModule,
+    RouterModule,
+    I18nModule
   ],
   exports: [
     ...COMPONENTS,

@@ -1,0 +1,29 @@
+{
+    "APP": {
+        "LOGIN": {
+            "login": "Login",
+            "logOff": "logOff",
+            "required": "*required",
+            "E-mail": "E-mail",
+            "E-mail-placeholder": "Enter E-mail",
+            "Password": "Password",
+            "Password-placeholder": "Enter Password",
+            "Forgot-password": "Forgot password?"
+        },
+        "LIST": {
+            "search-placeholder": "Text to search",
+            "load-more": "Load more",
+            "no-data": "No data finded"
+        },
+        "LANG_TOGGLE": {
+            "ru": "rus",
+            "en": "eng"
+        },
+        "BUTTONS": {
+            "login": "Login",
+            "add-cource": "Add Cource",
+            "edit": "Edit",
+            "delete": "Delete"
+        }
+    }
+}

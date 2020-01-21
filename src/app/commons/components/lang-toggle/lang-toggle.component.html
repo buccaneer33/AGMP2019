@@ -1,0 +1,10 @@
+<div class="language-toggle">
+    <select (change)="onChange($event.target.value)">
+        <option [selected]="currentLang === 'ru'" value="ru">
+            {{'APP.LANG_TOGGLE.ru' | translate}}
+        </option>
+        <option [selected]="currentLang === 'en'" value="en">
+            {{'APP.LANG_TOGGLE.en' | translate}}
+        </option>
+    </select>
+</div>

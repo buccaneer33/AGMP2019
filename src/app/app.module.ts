@@ -14,6 +14,7 @@ import { StoreModule } from '@ngrx/store';
 import { appReducers } from './store/reducers/app.redusers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { I18nModule } from './i18n/i18n.module';
 
 @NgModule({
     declarations: [
@@ -30,13 +31,14 @@ import { environment } from '../environments/environment';
         AuthModule,
         StoreModule.forRoot( appReducers ),
         !environment.production ? StoreDevtoolsModule.instrument() : [],
+        // I18nModule
     ],
     providers: [
-        AutorisationService, {
+        /*AutorisationService, {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true,
-        },
+        },*/
     ],
   bootstrap: [AppComponent]
 })

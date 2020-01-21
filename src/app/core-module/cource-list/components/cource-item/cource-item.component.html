@@ -4,7 +4,7 @@
     <div class="cource-item__infoblock">
         <div class="cource-item__header">
             <div class="cource-item__title">
-                <h3>Video Cource {{courceItem.id }} {{courceItem.name | uppercase}}
+                <h3>{{courceItem.id }} {{courceItem.name | uppercase}}
                     <span [ngClass]="{ 'cource-item--star': courceItem.isTopRated }"></span>
                 </h3>
             </div>
@@ -18,8 +18,11 @@
         </div>
     </div>
     <div class="cource-item__actionblock">
-        <a class="btn btn--edit" [routerLink]="['item', courceItem.id]">Edit</a>
-
-        <a class="btn btn--delete" (click)="deleteItem()">Delete</a>
+        <a class="btn btn--edit" [routerLink]="['item', courceItem.id]">
+            {{'APP.BUTTONS.edit' | translate}}
+        </a>
+        <a class="btn btn--delete" (click)="deleteItem()">
+            {{'APP.BUTTONS.delete' | translate}}
+        </a>
     </div>
 </div>

@@ -1,0 +1,29 @@
+{
+    "APP": {
+        "LOGIN": {
+            "login": "Логин",
+            "logOff": "выход",
+            "required": "*обязательное поле",
+            "E-mail": "E-mail",
+            "E-mail-placeholder": "Введите E-mail",
+            "Password": "Пароль",
+            "Password-placeholder": "Введите Пароль",
+            "Forgot-password": "Забыли пароль?"
+        },
+        "LIST": {
+            "search-placeholder": "Введите запрос",
+            "load-more": "Далее",
+            "no-data": "По вашему запросу ничего не найдено"
+        },
+        "LANG_TOGGLE": {
+            "ru": "рус",
+            "en": "анг"
+        },
+        "BUTTONS": {
+            "login": "Логин",
+            "add-cource": "Добавить",
+            "edit": "Добавить",
+            "delete": "Удалить"
+        }
+    }
+}

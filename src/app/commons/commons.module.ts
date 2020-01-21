@@ -8,6 +8,8 @@ import { LogoComponent } from './components/logo/logo.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 import { RouterModule } from '@angular/router';
+import { LangToggleComponent } from './components/lang-toggle/lang-toggle.component';
+import { I18nModule } from '../i18n/i18n.module';
 
 const COMPONENTS = [
     BreadcrumpsComponent,
@@ -16,6 +18,7 @@ const COMPONENTS = [
     LogoComponent,
     SearchBarComponent,
     LoadingOverlayComponent,
+    LangToggleComponent
   ];
 
 @NgModule({
@@ -26,6 +29,7 @@ const COMPONENTS = [
         CommonModule,
         FormsModule,
         RouterModule,
+        I18nModule
     ],
     exports: [
         ...COMPONENTS,

@@ -5,7 +5,7 @@
     border-radius: 5px;
     color: $btn-text-color;
     padding: 1% 2%;
-    width: 70px;
+    width: 90px;
     box-sizing: border-box;
     cursor: pointer;
 
@@ -34,6 +34,7 @@
         background-repeat: no-repeat;
         background-size: 17px;
         background-position: 5px 0px;
+        text-align: center;
     }
     &--delete{
         padding-left: 27px;
@@ -42,6 +43,7 @@
         background-repeat: no-repeat;
         background-size: 15px;
         background-position: 5px 2px;
+        text-align: center;
     }
 }
 .icon{

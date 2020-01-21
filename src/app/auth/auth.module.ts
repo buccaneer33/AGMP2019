@@ -5,12 +5,14 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthInterceptor } from './interceptors/AuthInterceptor';
 import { AutorisationService } from './services/autorisation.service';
 import { FormsModule } from '@angular/forms';
+import { I18nModule } from '../i18n/i18n.module';
 
 @NgModule({
   declarations: [LoginPageComponent],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    I18nModule
   ],
   providers: [AutorisationService],
   exports: [LoginPageComponent]

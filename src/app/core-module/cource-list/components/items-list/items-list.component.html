@@ -3,7 +3,9 @@
         <div class="tool-block__wrapper">
             <app-search-bar (search)="search($event)"></app-search-bar>
         </div>
-        <a class="tool-block__button btn btn--add" routerLink = "new">Add Cource</a>
+        <a class="tool-block__button btn btn--add" routerLink = "new">
+            {{'APP.BUTTONS.add-cource' | translate}}
+        </a>
     </div>
     <div *ngIf="courceList" class="items-list">
         <app-cource-item
@@ -11,7 +13,11 @@
             [courceItem]="courceItem"
             (chooseDelete)="deleteItem($event)">
         </app-cource-item>
-        <div class="items-list__load-more" (click)="loadMore()">LOAD MORE</div>
+        <div class="items-list__load-more" (click)="loadMore()">
+            {{'APP.LIST.load-more' | translate}}
+        </div>
     </div>
-    <div *ngIf="!courceList" class="items-list__load-more">NO DATA Message</div>
+    <div *ngIf="!courceList" class="items-list__load-more">
+        {{'APP.LIST.no-data' | translate}}
+    </div>
 </div>

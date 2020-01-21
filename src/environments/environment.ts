@@ -4,7 +4,10 @@
 
 export const environment = {
     production: false,
-
+    language: {
+        defaultLang: 'ru',
+        langs: ['ru', 'en']
+    },
     api: 'http://localhost:3004/',
     debounceTime: 500,
 };
