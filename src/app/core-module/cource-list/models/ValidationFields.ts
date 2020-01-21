@@ -21,4 +21,12 @@ export class FieldValidation {
             }
             return null;
     }
+    static authorsValidation = ( control: AbstractControl ) => {
+        const v: [] = control.value;
+
+            if (!v || v.length === 0) {
+                return { noAuthors: true};
+            }
+            return null;
+    }
 }

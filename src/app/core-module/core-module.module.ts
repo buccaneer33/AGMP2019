@@ -22,9 +22,6 @@ import {
 import {
     DurationFieldComponent
 } from './cource-list/components/item/fields/duration-field/duration-field.component';
-import {
-    AuthorComponent
-} from './cource-list/components/item/fields/authors-field/author/author.component';
 
 // DIRECTIVES
 import { CourceDateDirective } from './cource-list/directives/cource-date.directive';
@@ -54,7 +51,6 @@ const PIPES = [
     ...COMPONENTS,
     ...PIPES,
     CourceDateDirective,
-    AuthorComponent,
   ],
   imports: [
     CommonModule,

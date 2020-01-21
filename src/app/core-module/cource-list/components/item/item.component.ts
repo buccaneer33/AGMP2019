@@ -7,6 +7,7 @@ import { Cource } from '../../models/cource';
 import { ModalsServiceService } from '../../../../modals/services/modals-service.service';
 import { CourceForm } from '../../models/CourceForm';
 import { FormArray, FormGroup, FormControl } from '@angular/forms';
+import { Author } from '../../models/author';
 
 
 @Component({
@@ -37,7 +38,6 @@ export class ItemComponent implements OnInit, OnDestroy {
         } else {
             this.init();
         }
-        console.log(this.form);
     }
 
     ngOnDestroy(): void {
@@ -52,13 +52,9 @@ export class ItemComponent implements OnInit, OnDestroy {
             date: formatDate(metadata.date, 'dd/MM/yyy', 'en-US' ),
             duration: metadata.length,
             description: metadata.description,
-            isTopRated: metadata.isTopRated
+            isTopRated: metadata.isTopRated,
+            authors: metadata.authors
         });
-        if (metadata.authors && metadata.authors.length) {
-            for (const author of metadata.authors) {
-                (this.form.controls['authors'] as FormArray).push(new FormControl(author));
-            }
-        }
     }
     get title(): string {
         return this.id ? 'Edit cource' : 'Create cource';
@@ -103,6 +99,11 @@ export class ItemComponent implements OnInit, OnDestroy {
     public clickCancel(): void {
         this.router.navigate(['/list']);
     }
+
+    public showForm() {
+        console.log(this.form);
+    }
+
     private showError(error: any) {
         console.log(error);
         this.modalsService.showPopup({
@@ -113,4 +114,5 @@ export class ItemComponent implements OnInit, OnDestroy {
             popupData: 'Error: ' + error.statusText + '',
         });
     }
+
 }

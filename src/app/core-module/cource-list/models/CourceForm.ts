@@ -25,7 +25,9 @@ export class CourceForm {
                 Validators.maxLength(500)
             ]),
             isTopRated: new FormControl(''),
-            authors: new FormArray([], Validators.required),
+            authors: new FormControl([], [
+                FieldValidation.authorsValidation
+            ]),
         });
         return form;
     }

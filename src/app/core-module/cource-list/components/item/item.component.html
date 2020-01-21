@@ -81,7 +81,7 @@
             formControlName="duration"
             [control]="form.controls.duration"
             placeholder="Entry duration"
-        ></app-duration-field><!---->
+        ></app-duration-field>
 
         <div class="item__input-block item__input-block--checkbox">
             <div class="item__login-label item__login-label--short">Top Rated</div>
@@ -103,12 +103,17 @@
                 </div>
             </div>
         </div>-->
-        <app-authors-field [form]="form"></app-authors-field><!---->
-
-
+        <app-authors-field
+            formControlName="authors"
+            [control]="form.controls.authors"
+        ></app-authors-field>
 
     </div>
     <div class="item__footer">
+        <button
+            (click)="showForm()"
+            class="item__button login-popup__button--ok">Showform
+        </button>
         <button
             [disabled]="!form.valid"
             type="submit"

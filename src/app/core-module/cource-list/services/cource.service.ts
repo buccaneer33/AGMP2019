@@ -8,6 +8,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
 import { State, Store } from '@ngrx/store';
 import { AppState } from '../../../store/reducers/app.redusers';
 import { GetCourceList, SetCourceList } from '../../../store/actions/cources.actions';
+import { cloneDeep } from 'lodash';
 
 @Injectable({
     providedIn: 'root'
@@ -47,6 +48,21 @@ export class CourceService {
 
     getAuthors(): Observable<Author[]> {
         return this.http
-            .get<Author[]>(environment.api + 'authors');
+            .get<Author[]>(environment.api + 'authors')
+            .pipe(
+                map(array => {
+                    const clone = array.slice(0);
+                    const newArr: Author[] = [];
+                    clone.forEach(item => {
+                        const name = item.name.split(' ');
+                        newArr.push({
+                            id: item.id,
+                            name: name[0],
+                            lastName: name[1]
+                        });
+                    });
+                    return newArr;
+                })
+            );
     }
 }

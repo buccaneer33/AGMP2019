@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Injector, Optional, Self } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 
-export class FormFieldComponent implements ControlValueAccessor, OnInit {
+export class FormFieldComponent implements ControlValueAccessor {
 
     @Input() control;
     @Input() placeholder: string;
@@ -9,10 +9,6 @@ export class FormFieldComponent implements ControlValueAccessor, OnInit {
     protected value;
 
     constructor() { }
-
-        ngOnInit() {
-        console.log(this.control);
-    }
 
     public onChange: any = () => {};
     public onTouched: any = () => {};
