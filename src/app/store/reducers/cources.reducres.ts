@@ -9,7 +9,7 @@ export const initialCourceState: CourceState = {
     list: null,
 };
 
-export const courceReducers = (state = initialCourceState, action: CourceActions): CourceState => {
+export  function courceReducers( state = initialCourceState, action: CourceActions ): CourceState {
     switch (action.type) {
         case ECourceActions.GetList:
             return {...state};
@@ -21,4 +21,4 @@ export const courceReducers = (state = initialCourceState, action: CourceActions
         default:
             return state;
     }
-};
+}

@@ -11,7 +11,7 @@ export const initialAuthState: AuthState = {
     token: localStorage.getItem('token')
 };
 
-export const authReducers = (state = initialAuthState, action: AuthActions): AuthState => {
+export  function authReducers(state = initialAuthState, action: AuthActions): AuthState {
     switch (action.type) {
         case EAuthActions.SetToken:
             localStorage.setItem('token', action.payload);
@@ -33,4 +33,4 @@ export const authReducers = (state = initialAuthState, action: AuthActions): Aut
         default:
             return state;
     }
-};
+  }

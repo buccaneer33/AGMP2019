@@ -16,9 +16,9 @@ import { FormGroup } from '@angular/forms';
 export class ItemComponent implements OnInit, OnDestroy {
 
     public data: Cource;
+    public form: FormGroup;
     private id: number;
     private subscription: Subscription;
-    private form: FormGroup;
 
     constructor(
         private activateRoute: ActivatedRoute,

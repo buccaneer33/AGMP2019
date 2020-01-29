@@ -6,7 +6,7 @@ export class FormFieldComponent implements ControlValueAccessor {
     @Input() control;
     @Input() placeholder: string;
 
-    protected value;
+    public value;
 
     constructor() { }
 
